@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <!--    <ui:insert name="metadata">
+            <f:metadata>
+                <f:viewParam id="userName" name="userName" value="#{homeView.userName}"/> 	
+    
+            </f:metadata>        
+        </ui:insert>-->
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Cache-Control"
+              content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="Mon, 1 Aug 2010 10:00:00 GMT" />
+        <link rel="icon" href="#{request.contextPath}/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon"
+              href="#{request.contextPath}/favicon.ico" />        
+        <h:outputStylesheet name="./css/style.css"/>
+        <ui:insert name="cssLib"></ui:insert>
+        <ui:insert name="jsLib"></ui:insert>
+        <title><ui:insert name="siteTitle">生活好帮手</ui:insert></title>
+    </h:head>
+
+    <h:body>
+        <f:view>
+            <ui:insert name="metadata">
+                <f:metadata>
+                    <f:viewParam name="t" value="#{homeView.type}"/>
+                </f:metadata> 
+            </ui:insert>
+            <div id="main_container">
+                <div class="top_bar">
+                    <ui:insert name="TopBar"></ui:insert>
+                </div>
+
+                <div id="header" class="Fix">
+                    <ui:insert name="Header"><ui:include src="header.xhtml"></ui:include></ui:insert>
+                </div>
+
+                <div id="main_content">
+                    <div id="menu_bar">
+                        <ui:insert name="MenuBar">
+                            <ui:include src="menu_bar.xhtml"></ui:include>
+                        </ui:insert>
+                    </div>
+
+                    <div class="crumb_navigation">
+                        <ui:insert name="CrumbNavigation"><ui:include src="nav_crumb.xhtml"></ui:include></ui:insert>
+                    </div>
+
+                    <div class="left_content">
+                        <ui:insert name="LeftContent"><ui:include src="left_content.xhtml"></ui:include></ui:insert>
+                    </div>
+
+                    <div class="center_content">
+                        <ui:insert name="CenterContent"><ui:include src="center_content.xhtml"></ui:include></ui:insert>
+                    </div>
+
+                    <div class="right_content">
+                        <ui:insert name="RightContent"><ui:include src="right_content.xhtml"></ui:include></ui:insert>
+                    </div>                
+                </div>
+
+
+                <div class="footer">
+                    <ui:insert name="Footer"><ui:include src="footer.xhtml"></ui:include></ui:insert>
+                </div>            
+            </div>
+            <div style="position: absolute; visibility: hidden;"><div></div></div>
+        </f:view>
+    </h:body>
+
+</html>

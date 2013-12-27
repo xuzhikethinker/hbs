@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    常用服务列表
+
+    <!--    <p:inputText id="name" value="{homeView.type}" />  
+        <p:commandButton value="Submit" update="mainForm"/>-->
+
+
+    <!-- 使用 @ManagedProperty("{param.type}")传递参数方式 -->
+    <!--    <h:outputLink value="/haobangshou/view/sp_content.xhtml">
+                <h:outputText value="服务提供商内容" />
+            <f:param name="type" value="yangliming" />
+    </h:outputLink>-->
+<!--    <h:link includeViewParams="true" outcome="sp_content"
+            value="传递参数-方式2">
+        <f:param name="userName" value="xupeiqi"/>
+    </h:link>-->
+    <br/>
+    <h:link outcome="/view/sp_content.xhtml" value="传递参数2-银行">
+            <f:param name="t" value="bank"/>
+         </h:link>
+
+    <br/>
+        <h:link outcome="/view/sp_content.xhtml?t=dinner" value="传递参数2-饮食">
+         </h:link>
+    
+<!--    <h:inputText id="userName1" value="#{homeView.userName}"/>
+    <h:commandButton value="submit" 
+    action="catalog?faces-redirect=true&amp;includeViewParams=true"/>-->
+
+
+    <!--    <h:form>
+            <h:outputLink value="/haobangshou/view/home1.xhtml">
+                <h:outputText value="Login page" />
+            <f:param name="type" value="yangliming" />
+    </h:outputLink>
+            
+            <p:tieredMenu>  
+                <p:submenu label="餐饮美食">  
+                    <p:menuitem value="小吃快餐"  />  
+                    <p:menuitem value="川菜"  />  
+                </p:submenu>  
+                <p:submenu label="休闲娱乐">  
+                    <p:menuitem value="咖啡与茶"/>  
+                </p:submenu>  
+                <p:separator />  
+                <p:submenu label="购物商店">  
+                    <p:menuitem value="超市便利店"/>  
+                    <p:menuitem value="服装饰品店" />  
+                    <p:menuitem value="鞋帽箱皮包具" />  
+                </p:submenu>  
+            </p:tieredMenu> 
+        </h:form>-->
+</ui:composition>

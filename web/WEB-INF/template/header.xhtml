@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <div id="logo" class="div-inline">
+        <h:graphicImage library="images" name="logo3.png" alt="" title=""/>
+    </div>
+
+    <div class="search-div div-inline">
+         <input type="text" value="" id="search-keywords" placeholder="输入团购商户名、类别、商区等关键字" class="input" name="search" autocomplete="off"/>
+        <a track="dp_tg_shanghai_search" id="searchBtn" class="search-btn">搜索</a>
+    </div>
+
+    <div class="login-register div-inline">
+        <!--<h:graphicImage library="images" name="logo3.png" alt="" title=""/>-->
+        <li class="first">
+            <a class="unlog"  href="http://t.dianping.com/login">登录</a>
+            <a class="reg"  href="http://t.dianping.com/register">快速注册</a>		
+        </li>
+    </div>
+</ui:composition>
