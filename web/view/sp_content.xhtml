@@ -1,0 +1,13 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/template/template.xhtml">
+    <ui:define name="metadata">
+      <f:metadata>
+      <f:viewParam name="t" value="#{homeView.type}"/>
+      <f:viewAction action="#{homeView.loadData}" onPostback="false" />
+    </f:metadata> 
+    </ui:define>
+    <ui:define name="CenterContent">服务提供商的类型，#{homeView.type}</ui:define>
+</ui:composition>
