@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
     <display-name>HaoBangShou</display-name>
     <!-- jstl 国际化,用标签 <%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt" 
     %> -->
@@ -119,19 +122,19 @@
     <!-- Mojarra/RI specific settings. -->
     <context-param>
         <param-name>com.sun.faces.defaultResourceMaxAge</param-name>
-        <param-value>3628800000</param-value>
+        <param-value>36288000</param-value>
         <!-- 6 weeks. -->
     </context-param>
     <context-param>
         <param-name>log4jConfigLocation</param-name>
         <param-value>classpath:log4j.properties</param-value>
     </context-param>
-    
-    <context-param>  
-        <param-name>primefaces.THEME</param-name>  
-        <param-value>bootstrap</param-value>  
-    </context-param>  
-    
+
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>bootstrap</param-value>
+    </context-param>
+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -141,6 +144,8 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+
+
     <!--    <listener>
         <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
     </listener>-->
@@ -150,18 +155,28 @@
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
+    <!--<filter>-->
+    <!--<filter-name>encodingFilter</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
+    <!--<init-param>-->
+    <!--<param-name>encoding</param-name>-->
+    <!--<param-value>utf-8</param-value>-->
+    <!--</init-param>-->
+    <!--<init-param>-->
+    <!--<param-name>forceEncoding</param-name>-->
+    <!--<param-value>true</param-value>-->
+    <!--</init-param>-->
+    <!--</filter>-->
+
     <filter>
-        <filter-name>encodingFilter</filter-name>
-        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>utf-8</param-value>
-        </init-param>
-        <init-param>
-            <param-name>forceEncoding</param-name>
-            <param-value>true</param-value>
-        </init-param>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
     </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.omnifaces.filter.CharacterEncodingFilter</filter-class>
@@ -176,7 +191,7 @@
     </filter>
     <filter-mapping>
         <filter-name>facesExceptionFilter</filter-name>
-        <servlet-name>facesServlet</servlet-name>
+        <servlet-name>Faces Servlet</servlet-name>
     </filter-mapping>
     <filter>
         <filter-name>gzipResponseFilter</filter-name>
