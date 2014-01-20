@@ -150,8 +150,22 @@ ol, ul {
 .left_content{
     width:200px;
     float:left;
-    border: 1px solid blue;
+    border: 1px solid #C9C9C9;
     min-height: 500px;
+    /*padding-left: 5px;*/
+}
+
+.left_content a{
+    color: #2BB8AA;
+    text-decoration: none;
+}
+
+.left_content .div_padding{
+    padding-left: 5px;
+}
+
+.left_content div{
+    padding-left: 5px;
 }
 
 /*center content--------------------------*/
@@ -160,7 +174,7 @@ ol, ul {
     float:left;
     padding:5px 10px;
     min-height: 500px;
-    border: 1px solid yellowgreen;
+    /*border: 1px solid yellowgreen;*/
 }
 
 

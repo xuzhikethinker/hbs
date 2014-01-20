@@ -1,9 +1,94 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    常用服务列表
+    <div>
+        <h3><h:link outcome="/view/sp_content.xhtml?t=dinner" value="餐饮美食" style="text-decoration: none; color: #000000;"></h:link></h3>
+        <p>
+            <h:link outcome="/view/sp_content.xhtml?t=dinner&amp;code=1000100" value="小吃快餐" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="川菜" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="湘菜" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="西餐" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="火锅" style="text-decoration: none;"></h:link>
+        </p>
+    </div>
+
+    <div>
+        <h3>休闲娱乐</h3>
+        <p>
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="KTV" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="咖啡与茶" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="酒吧" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="运动健身" style="text-decoration: none;"></h:link>
+        </p>
+    </div>
+
+    <div>
+        <h3>购物商店</h3>
+        <p>
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="超市便利店" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="化妆品店" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="服装饰品店" style="text-decoration: none;"></h:link>
+        </p>
+    </div>
+
+    <div>
+        <h3>维修服务</h3>
+        <p>
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="自行车维修" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="家电维修" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="汽车维修" style="text-decoration: none;"></h:link>
+        </p>
+    </div>
+
+    <div>
+        <h3>银行服务</h3>
+        <p>
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="中国银行" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="工商银行" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="建设银行" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" /><br/>
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="农业银行" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="招商银行" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="交通银行" style="text-decoration: none;"></h:link>
+        </p>
+    </div>
+
+    <div>
+        <h3>医疗健康</h3>
+        <p>
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="医院诊所" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="药店" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+        </p>
+    </div>
+
+    <div>
+        <h3>水电部门</h3>
+        <p>
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="供电局" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="供水公司" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+        </p>
+    </div>
+
+    <div>
+        <h3>果蔬服务</h3>
+        <p>
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="菜市场" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="水果店" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+        </p>
+    </div>
+
+    <div>
+        <h3>便民服务</h3>
+        <p>
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="保洁" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="洗衣店" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="家政保姆" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="母婴" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+            <h:link outcome="/view/sp_content.xhtml?t=dinner" value="宠物店" style="text-decoration:none"></h:link>
+        </p>
+    </div>
 
     <!--    <p:inputText id="name" value="{homeView.type}" />  
         <p:commandButton value="Submit" update="mainForm"/>-->
@@ -18,14 +103,14 @@
             value="传递参数-方式2">
         <f:param name="userName" value="xupeiqi"/>
     </h:link>-->
-    <br/>
-    <h:link outcome="/view/sp_content.xhtml" value="传递参数2-银行">
-            <f:param name="t" value="bank"/>
-         </h:link>
+    <!--<br/>-->
+    <!--<h:link outcome="/view/sp_content.xhtml" value="传递参数2-银行">-->
+            <!--<f:param name="t" value="bank"/>-->
+         <!--</h:link>-->
 
-    <br/>
-        <h:link outcome="/view/sp_content.xhtml?t=dinner" value="传递参数2-饮食">
-         </h:link>
+    <!--<br/>-->
+        <!--<h:link outcome="/view/sp_content.xhtml?t=dinner" value="传递参数2-饮食">-->
+         <!--</h:link>-->
     
 <!--    <h:inputText id="userName1" value="#{homeView.userName}"/>
     <h:commandButton value="submit" 
