@@ -108,7 +108,7 @@
     -->
     <context-param>
         <param-name>org.omnifaces.FACES_VIEWS_SCAN_PATHS</param-name>
-        <param-value>/view</param-value>
+        <param-value>/ui</param-value>
     </context-param>
     <!--
             Redirects the faces views scanned /showcase/[PAGE].xhtml to /[PAGE].
