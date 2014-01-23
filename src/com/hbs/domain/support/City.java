@@ -1,11 +1,10 @@
 package com.hbs.domain.support;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "HBS_CITY")
@@ -21,7 +20,7 @@ public class City extends AbstractPersistable<Long> {
     private String cityCode;// 城市代码，使用电话区号来代替，一共四位，不足四位前面补0，如北京0010
 
     @Basic
-    @Column(name = "PROVIDER_CODE", nullable = false)
+    @Column(name = "PROVINCE_CODE", nullable = false)
     private String provinceCode;// 城市所属省份
 
     @Basic
@@ -31,6 +30,13 @@ public class City extends AbstractPersistable<Long> {
     @Basic
     @Column(name = "CITY_SPELLING", nullable = true)
     private String spelling; // 汉语拼音，用来auto complete搜索
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "PROVINCE_ID")
+    private Province province;
+
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<District> districts = new HashSet<District>();
 
     public City() {
     }
@@ -75,4 +81,19 @@ public class City extends AbstractPersistable<Long> {
         this.provinceCode = provinceCode;
     }
 
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
+    }
+
+    public Set<District> getDistricts() {
+        return districts;
+    }
+
+    public void setDistricts(Set<District> districts) {
+        this.districts = districts;
+    }
 }

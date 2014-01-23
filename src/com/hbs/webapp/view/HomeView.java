@@ -7,19 +7,16 @@
 package com.hbs.webapp.view;
 
 import com.hbs.domain.service.ServiceCategory;
-import com.hbs.repository.ServiceInfoRepository;
 import com.hbs.service.ServiceInfoService;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ComponentSystemEvent;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -55,11 +52,11 @@ public class HomeView extends BaseView implements Serializable  {
         System.out.println("HomeView init="+this.getCurrentExternalContext().getInitParameterMap());
     }
     
-    public String loadData(){
+    public void loadData(){
         System.out.println("HomeView loadData type="+type);
         allServiceCategoryList = serviceInfoService.findAllServiceCategory();
         System.out.println("allServiceCategoryList = "+allServiceCategoryList.size());
-        return null;
+//        return null;
     }
   
     public String getOutcome(){

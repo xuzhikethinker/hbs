@@ -19,6 +19,8 @@ public abstract class BaseView {
     return FacesContext.getCurrentInstance();
   }
 
+    public abstract void loadData();
+
   /**
    * 可以通过ExternalContext获取requestMap等，getRequestParameterMap()
    * 

@@ -1,11 +1,10 @@
 package com.hbs.domain.support;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "HBS_PROVINCE")
@@ -19,6 +18,9 @@ public class Province extends AbstractPersistable<Long> {
     @Basic
     @Column(name = "PROVIDER_CODE", nullable = false)
     private String provinceCode;
+
+    @OneToMany(mappedBy = "province", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<City> cities = new HashSet<City>();
 
     public Province() {
     }

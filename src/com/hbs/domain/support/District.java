@@ -1,17 +1,10 @@
 package com.hbs.domain.support;
 
+import com.hbs.domain.common.PersistenceDomain;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import com.hbs.domain.common.PersistenceDomain;
 
 @Entity
 @Table(name = "HBS_DISTRICT")
@@ -34,13 +27,16 @@ public class District extends PersistenceDomain {
     @Column(name = "DESCRIPTION", nullable = true)
     private String description;//
 
-    @Basic
     @OneToMany(mappedBy = "district", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<LifeBusinessCircle> lifeBusinessCicles = new ArrayList<LifeBusinessCircle>();
 
     @Basic
     @Column(name = "KEYWORDS", nullable = true)
     private String keywords;// 众人对某个区的某些重点地带，如凤凰北，邮政大厦，主要用来标识某个区的重点，如唐家没有搜索到，则会搜索香洲区的凤凰北，而不会去搜索电脑城附近。这里面的词可以从用户输入的关键字拼凑。
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "CITY_ID")
+    private City city;
 
     public District() {
     }
@@ -93,4 +89,11 @@ public class District extends PersistenceDomain {
         this.keywords = keywords;
     }
 
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 }

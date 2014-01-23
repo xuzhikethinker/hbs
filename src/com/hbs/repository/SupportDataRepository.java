@@ -1,7 +1,7 @@
 package com.hbs.repository;
 
-/**
- * Created by XUZH on 12/30/13.
- */
-public interface SupportDataRepository {
+import com.hbs.domain.support.Province;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SupportDataRepository extends JpaRepository<Province, Long> {
 }

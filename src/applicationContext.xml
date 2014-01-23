@@ -49,7 +49,7 @@
         
                 <bean 
                     class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-                    p:name="serviceCategoryCache" /> 
+                    p:name="provinces" />
             </set> 
         </property> 
     </bean> 

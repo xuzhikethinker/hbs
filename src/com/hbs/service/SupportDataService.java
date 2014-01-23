@@ -1,7 +1,9 @@
 package com.hbs.service;
 
-/**
- * Created by XUZH on 12/30/13.
- */
+import com.hbs.domain.support.Province;
+
+import java.util.List;
+
 public interface SupportDataService {
+    public List<Province> findAllProvince();
 }
