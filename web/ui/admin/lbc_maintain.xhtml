@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                template="/WEB-INF/template/admin/admin_layout.xhtml">
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewAction action="#{supportDataMaintainView.loadData}" onPostback="false"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="CenterContent">
+        <p:tabView>
+            <p:tab title="城市" id="cityMaintain">
+                <h:form prependId="false" id="cityForm">
+                <h:panelGrid id="searchCity" columns="2">
+                    <h:outputLabel for="provinceOneMenu" value="省份:"/>
+                    <p:selectOneMenu id="provinceOneMenu"
+                                     value="#{supportDataMaintainView.lbcSearchCriteria.provinceCode}"
+                                     style="width: 120px;">
+                        <f:selectItems value="#{supportDataMaintainView.provinceList}" var="province"
+                                       itemLabel="#{province.provinceName}" itemValue="#{province.provinceCode}"/>
+                           <p:ajax update="cityList" listener="#{supportDataMaintainView.loadCityListFromProvinceCode}" process="searchCity"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <br/>
+
+                <p:dataTable id="cityList" value="#{supportDataMaintainView.cityList}" var="city"
+                             paginator="true" rows="10"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                             editable="true">
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column  headerText="省份-#{fn:length(supportDataMaintainView.cityList)}" styleClass="table_header" />
+                            <p:column headerText="城市" styleClass="table_header" />
+                            <p:column headerText="城市代码" styleClass="table_header" />
+                        </p:row>
+                    </p:columnGroup>
+                    <p:column rowspan="5"  styleClass="table_header">
+                        <h:outputText value="#{city.province.provinceName}"/>
+                    </p:column>
+
+                    <p:column styleClass="table_header">
+                        <h:outputText value="#{city.cityName}"/>
+                    </p:column>
+
+                    <p:column styleClass="table_header">
+                        <h:outputText value="#{city.cityCode}"/>
+                    </p:column>
+                </p:dataTable>
+                <br/>
+                    <ui:include src="segments/new_city.xhtml"></ui:include>
+            </h:form>
+            </p:tab>
+
+            <p:tab title="新建区(县)" id="districtMaintain">
+                <h:form prependId="false" id="districtForm">
+                    <p:dataTable id="distinctList" value="#{supportDataMaintainView.cityList}" var="city"
+                                 paginator="true" rows="10"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                                 editable="true">
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <p:column headerText="省份" styleClass="table_header" />
+                                <p:column headerText="城市" styleClass="table_header" />
+                                <p:column headerText="城市代码" styleClass="table_header" />
+                            </p:row>
+                        </p:columnGroup>
+                        <p:subTable var="district" value="#{city.districtList}">
+                            <p:column rowspan="${fn:length(province.cities)}" styleClass="table_header">
+                                <h:outputText value="#{province.provinceName}"/>
+                            </p:column>
+
+                            <p:column styleClass="table_header">
+                                <h:outputText value="#{district.districtName}"/>
+                            </p:column>
+
+                            <p:column styleClass="table_header">
+                                <h:outputText value="#{district.districtCode}"/>
+                            </p:column>
+                         </p:subTable>
+
+                    </p:dataTable>
+                    <br/>
+                <ui:include src="segments/new_district.xhtml"></ui:include>
+                </h:form>
+            </p:tab>
+
+            <p:tab title="生活商业圈" id="lbcMaintain">
+
+            </p:tab>
+        </p:tabView>
+    </ui:define>
+</ui:composition>

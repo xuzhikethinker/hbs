@@ -5,6 +5,9 @@
  */
 package com.hbs.webapp.view;
 
+import com.hbs.service.SupportDataService;
+
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -14,8 +17,18 @@ import javax.servlet.ServletContext;
  * @author develop
  */
 public abstract class BaseView {
+    @ManagedProperty(value = "#{supportDataService}")
+    protected SupportDataService supportDataService;
 
-  protected FacesContext getCurrentFacesContext() {
+    public SupportDataService getSupportDataService() {
+        return supportDataService;
+    }
+
+    public void setSupportDataService(SupportDataService supportDataService) {
+        this.supportDataService = supportDataService;
+    }
+
+    protected FacesContext getCurrentFacesContext() {
     return FacesContext.getCurrentInstance();
   }
 

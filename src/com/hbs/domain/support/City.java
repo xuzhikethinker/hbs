@@ -3,7 +3,9 @@ package com.hbs.domain.support;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -95,5 +97,16 @@ public class City extends AbstractPersistable<Long> {
 
     public void setDistricts(Set<District> districts) {
         this.districts = districts;
+    }
+
+    public void addDistrict(District district){
+        district.setCity(this);
+        districts.add(district);
+    }
+
+    public List<District> getDistrictList(){
+        List<District> districtList = new ArrayList<District>();
+        districtList.addAll(districts);
+        return districtList;
     }
 }

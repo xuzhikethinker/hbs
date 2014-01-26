@@ -177,6 +177,14 @@ ol, ul {
     /*border: 1px solid yellowgreen;*/
 }
 
+.admin_center_content{
+    width:980px;
+    float:left;
+    padding:5px 10px;
+    min-height: 500px;
+    /*border: 1px solid yellowgreen;*/
+}
+
 
 
 /*----------------------right content--------------*/

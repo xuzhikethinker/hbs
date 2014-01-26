@@ -6,6 +6,9 @@
         version="2.2">
     <application>
         <!--		<message-bundle>resources.application</message-bundle>-->
+        <resource-handler>
+            org.omnifaces.resourcehandler.CombinedResourceHandler
+        </resource-handler>
         <locale-config>
             <default-locale>zh</default-locale>
             <supported-locale>en</supported-locale>

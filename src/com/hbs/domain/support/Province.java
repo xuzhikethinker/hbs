@@ -1,5 +1,6 @@
 package com.hbs.domain.support;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
@@ -41,4 +42,25 @@ public class Province extends AbstractPersistable<Long> {
         this.provinceCode = provinceCode;
     }
 
+    public Set<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(Set<City> cities) {
+        this.cities = cities;
+    }
+
+    public void addCity(City city) {
+        city.setProvince(this);
+        cities.add(city);
+    }
+
+    public City getCityFromCode(String cityCode) {
+        for (City ct : cities) {
+            if (StringUtils.equalsIgnoreCase(ct.getCityCode(), cityCode)) {
+                return ct;
+            }
+        }
+        return new City();
+    }
 }
