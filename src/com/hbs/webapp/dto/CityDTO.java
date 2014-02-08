@@ -8,9 +8,9 @@ import java.io.Serializable;
  * Created by Administrator on 14-1-25.
  */
 public class CityDTO implements Serializable {
-    private String proviceCode;
-    private String cityCode;
-    private String cityName;
+    protected String proviceCode;
+    protected String cityCode;
+    protected String cityName;
 
 
     public String getProviceCode() {

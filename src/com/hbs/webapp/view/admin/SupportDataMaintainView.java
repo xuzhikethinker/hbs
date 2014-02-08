@@ -2,9 +2,12 @@ package com.hbs.webapp.view.admin;
 
 import com.hbs.domain.service.ServiceCategory;
 import com.hbs.domain.support.City;
+import com.hbs.domain.support.District;
+import com.hbs.domain.support.LifeBusinessCircle;
 import com.hbs.domain.support.Province;
 import com.hbs.webapp.dto.CityDTO;
 import com.hbs.webapp.dto.DistrictDTO;
+import com.hbs.webapp.dto.LifeBusinessCircleDTO;
 import com.hbs.webapp.view.BaseView;
 import com.hbs.webapp.view.criteria.LBCSearchCriteria;
 import org.apache.commons.lang3.StringUtils;
@@ -24,11 +27,14 @@ public class SupportDataMaintainView extends BaseView {
     private LBCSearchCriteria lbcSearchCriteria = new LBCSearchCriteria();
     private List<Province> provinceList = new ArrayList<Province>();
     private List<City> cityList = new ArrayList<City>();
+    private List<District> districtList = new ArrayList<District>();
     private List<ServiceCategory> serviceCategoryList = new ArrayList<ServiceCategory>();
+    private List<LifeBusinessCircle> lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
     private CityDTO cityDTO = new CityDTO();
     private DistrictDTO districtDTO = new DistrictDTO();
+    private LifeBusinessCircleDTO lbcDTO = new LifeBusinessCircleDTO();
 
-    public SupportDataMaintainView(){
+    public SupportDataMaintainView() {
 
     }
 
@@ -80,6 +86,30 @@ public class SupportDataMaintainView extends BaseView {
         this.districtDTO = districtDTO;
     }
 
+    public List<District> getDistrictList() {
+        return districtList;
+    }
+
+    public void setDistrictList(List<District> districtList) {
+        this.districtList = districtList;
+    }
+
+    public List<LifeBusinessCircle> getLifeBusinessCircleList() {
+        return lifeBusinessCircleList;
+    }
+
+    public void setLifeBusinessCircleList(List<LifeBusinessCircle> lifeBusinessCircleList) {
+        this.lifeBusinessCircleList = lifeBusinessCircleList;
+    }
+
+    public LifeBusinessCircleDTO getLbcDTO() {
+        return lbcDTO;
+    }
+
+    public void setLbcDTO(LifeBusinessCircleDTO lbcDTO) {
+        this.lbcDTO = lbcDTO;
+    }
+
     @Override
     public void loadData() {
         logger.info("SupportDataMaintainView.loadData");
@@ -87,16 +117,50 @@ public class SupportDataMaintainView extends BaseView {
         serviceCategoryList = this.supportDataService.findAllService();
     }
 
-    public void loadCityListFromProvinceCode(){
+    public void loadCityListFromProvinceCode() {
         logger.info("SupportDataMaintainView.loadCityListFromProvinceCode");
+        districtList = new ArrayList<District>();
+        lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
         cityList = new ArrayList<City>();
+        lbcSearchCriteria.setCityCode(null);
+        lbcSearchCriteria.setDistrictCode(null);
         String provinceCode = this.lbcSearchCriteria.getProvinceCode();
-        if(StringUtils.isNotEmpty(provinceCode)){
+        if (StringUtils.isNotEmpty(provinceCode)) {
             cityList.addAll(this.supportDataService.getProvinceMap().get(provinceCode).getCities());
         }
     }
 
-    public void addNewCity(ActionEvent actionEvent){
+    public void loadLBCFromDistrictCode() {
+        logger.info("SupportDataMaintainView.loadLBCFromDistrictCode");
+        lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
+        String provinceCode = this.lbcSearchCriteria.getProvinceCode();
+        String cityCode = this.lbcSearchCriteria.getCityCode();
+        if (StringUtils.isNotEmpty(provinceCode)) {
+            Province province = this.supportDataService.getProvinceMap().get(provinceCode);
+            City city = province.getCityFromCode(cityCode);
+            if (city != null) {
+                District district = city.getDistrictFromCode(this.lbcSearchCriteria.getDistrictCode());
+                if (district != null) {
+                    this.lifeBusinessCircleList.addAll(district.getLifeBusinessCicles());
+                }
+            }
+        }
+    }
+
+    public void loadDistrictListFromCityCode() {
+        logger.info("SupportDataMaintainView.loadDistrictListFromCityCode");
+        districtList = new ArrayList<District>();
+        lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
+        String provinceCode = this.lbcSearchCriteria.getProvinceCode();
+        String cityCode = this.lbcSearchCriteria.getCityCode();
+        lbcSearchCriteria.setDistrictCode(null);
+        if (StringUtils.isNotEmpty(provinceCode)) {
+            Province province = this.supportDataService.getProvinceMap().get(provinceCode);
+            this.districtList.addAll(province.getCityFromCode(cityCode).getDistrictList());
+        }
+    }
+
+    public void addNewCity(ActionEvent actionEvent) {
         logger.info("SupportDataMaintainView.addNewCity");
         Province province = this.supportDataService.getProvinceMap().get(cityDTO.getProviceCode());
         province.addCity(cityDTO.convertToCity());
@@ -106,12 +170,12 @@ public class SupportDataMaintainView extends BaseView {
         loadCityListFromProvinceCode();
     }
 
-    public void addNewDistrict(ActionEvent actionEvent){
+    public void addNewDistrict(ActionEvent actionEvent) {
         logger.info("SupportDataMaintainView.addNewDistrict");
-        Province province = this.supportDataService.getProvinceMap().get(cityDTO.getProviceCode());
-        City city = province.getCityFromCode(cityDTO.getCityCode());
-        districtDTO.setCityCode(cityDTO.getCityCode());
-        if(city!=null){
+        Province province = this.supportDataService.getProvinceMap().get(lbcSearchCriteria.getProvinceCode());
+        City city = province.getCityFromCode(lbcSearchCriteria.getCityCode());
+        districtDTO.setCityCode(lbcSearchCriteria.getCityCode());
+        if (city != null) {
             city.addDistrict(districtDTO.convertToDistrict());
         }
         this.supportDataService.saveProvice(province);
@@ -120,6 +184,26 @@ public class SupportDataMaintainView extends BaseView {
         districtDTO = new DistrictDTO();
         loadCityListFromProvinceCode();
 
+    }
+
+    public void addNewLifeBusinessCircle() {
+        logger.info("SupportDataMaintainView.addNewLifeBusinessCircle");
+        Province province = this.supportDataService.getProvinceMap().get(lbcSearchCriteria.getProvinceCode());
+        City city = province.getCityFromCode(lbcSearchCriteria.getCityCode());
+
+        if (city != null) {
+            District district = city.getDistrictFromCode(lbcSearchCriteria.getDistrictCode());
+            if (district != null) {
+                this.lbcDTO.setDistrictCode(district.getDistrictCode());
+                district.addLifeBusinessCircle(lbcDTO.convertToLifeBusinessCircle());
+            }
+        }
+        this.supportDataService.saveProvice(province);
+        this.loadData();
+        cityDTO = new CityDTO();
+        districtDTO = new DistrictDTO();
+        lbcDTO = new LifeBusinessCircleDTO();
+        loadCityListFromProvinceCode();
     }
 
     public void handleProvinceChange() {

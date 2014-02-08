@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:outputLabel for="#{componentID}List" value="省份:"/>
+    <p:selectOneMenu id="#{componentID}List"
+                     value="#{view.lbcSearchCriteria.provinceCode}"
+                     style="width: 120px;">
+        <f:selectItems value="#{view.provinceList}" var="province"
+                       itemLabel="#{province.provinceName}" itemValue="#{province.provinceCode}"/>
+        <p:ajax update="#{componentID}" listener="#{view.loadCityListFromProvinceCode}"/>
+    </p:selectOneMenu>
+
+    <h:outputLabel for="#{componentID}" value="城市:"/>
+    <p:selectOneMenu rendered="#{refreshTable}" id="#{componentID}" value="#{view.lbcSearchCriteria.cityCode}">
+        <f:selectItem itemLabel="选择城市" itemValue="" />
+        <f:selectItems value="#{view.cityList}" var="city"
+                       itemLabel="#{city.cityName}" itemValue="#{city.cityCode}"/>
+        <p:ajax update="distinctList"  listener="#{view.loadDistrictListFromCityCode}"/>
+    </p:selectOneMenu>
+
+    <!--<p:selectOneMenu rendered="#{!refreshTable}" id="#{componentID}" value="#{view.lbcSearchCriteria.cityCode}">-->
+        <!--<f:selectItem itemLabel="选择城市" itemValue="" />-->
+        <!--<f:selectItems value="#{view.cityList}" var="city"-->
+                       <!--itemLabel="#{city.cityName}" itemValue="#{city.cityCode}"/>-->
+    <!--</p:selectOneMenu>-->
+
+</ui:composition>

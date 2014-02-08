@@ -6,7 +6,7 @@
     <p:panel id="newDistrict" header="新建区(县)" toggleable="true" closable="false" toggleSpeed="500"
              closeSpeed="500" widgetVar="districtPanel" collapsed="true" >
         <h:panelGrid columns="2" id="districtEditSection">
-            <h:outputLabel value="省份 : *"></h:outputLabel>
+<!--            <h:outputLabel value="省份 : *"></h:outputLabel>
             <p:selectOneMenu value="#{supportDataMaintainView.cityDTO.proviceCode}" style="width: 120px;">
                 <f:selectItems value="#{supportDataMaintainView.provinceList}" var="province"
                                itemLabel="#{province.provinceName}" itemValue="#{province.provinceCode}"/>
@@ -18,7 +18,12 @@
                 <f:selectItem itemLabel="请选择城市" itemValue="" />
                 <f:selectItems value="#{supportDataMaintainView.cityList}" var="city"
                                itemLabel="#{city.cityName}" itemValue="#{city.cityCode}"/>
-            </p:selectOneMenu>
+            </p:selectOneMenu>-->
+            <ui:include src="city_selector.xhtml">
+                <ui:param name="componentID" value="editCityPanel"></ui:param>
+                <ui:param name="view" value="#{supportDataMaintainView}"></ui:param>
+                <ui:param name="refreshTable" value="true"></ui:param>
+            </ui:include>
 
             <h:outputLabel value="区（县）名 :"></h:outputLabel>
             <p:inputText required="true"
@@ -28,6 +33,8 @@
             <p:inputText required="true"
                          value="#{supportDataMaintainView.districtDTO.districtCode}"/>
 
+            <h:outputLabel value="说明 :"></h:outputLabel>
+            <p:inputTextarea rows="6" cols="33" value="#{supportDataMaintainView.districtDTO.description}"/>
         </h:panelGrid>
         <p:commandButton id="btn_saveDistrict" value="保存" validateClient="true" ajax="true" update="newDistrict"
                          actionListener="#{supportDataMaintainView.addNewDistrict}">

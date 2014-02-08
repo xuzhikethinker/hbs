@@ -109,4 +109,13 @@ public class City extends AbstractPersistable<Long> {
         districtList.addAll(districts);
         return districtList;
     }
+
+    public District getDistrictFromCode(String code){
+        for(District district: getDistrictList()){
+            if(code.equalsIgnoreCase(district.getDistrictCode())){
+                return district;
+            }
+        }
+        return null;
+    }
 }

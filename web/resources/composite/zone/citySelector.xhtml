@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<composite:interface>
+    <composite:attribute name="actionBean" type="java.lang.Object"/>
+    <composite:attribute name="provinceList" type="java.util.List"/>
+    <composite:attribute name="cityList" type="java.util.List"/>
+    <composite:attribute name="provinceCode" type="java.lang.String"/>
+    <composite:attribute name="cityCode" type="java.lang.String"/>
+    <composite:attribute name="targetID" type="java.lang.String"/>
+    <composite:attribute name="changeProvinceAction"
+                         method-signature="void action()" />
+    <composite:attribute name="changeCityAction"
+                         method-signature="void action()" />
+</composite:interface>
+
+<composite:implementation>
+    <h:panelGrid id="searchDistrict1111" columns="4">
+        <h:outputLabel for="provinceMenuList" value="省份:"/>
+        <p:selectOneMenu id="provinceMenuList"
+                         value="#{cc.attrs.provinceCode}"
+                         style="width: 120px;">
+            <f:selectItems value="#{cc.attrs.provinceList}" var="province"
+                           itemLabel="#{province.provinceName}" itemValue="#{province.provinceCode}"/>
+            <p:ajax update="cityMenuList" listener="#{cc.attrs.changeProvinceAction}"/>
+        </p:selectOneMenu>
+
+        <h:outputLabel for="cityMenuList" value="城市:"/>
+        <p:selectOneMenu id="cityMenuList" value="#{cc.attrs.cityCode}">
+            <f:selectItem itemLabel="选择城市" itemValue="" />
+            <f:selectItems value="#{cc.attrs.cityList}" var="city"
+                           itemLabel="#{city.cityName}" itemValue="#{city.cityCode}"/>
+            <p:ajax update="distinctList1111"  listener="#{cc.attrs.changeCityAction}"/>
+        </p:selectOneMenu>
+    </h:panelGrid>
+</composite:implementation>
+</html>

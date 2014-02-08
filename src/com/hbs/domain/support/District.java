@@ -96,4 +96,9 @@ public class District extends PersistenceDomain {
     public void setCity(City city) {
         this.city = city;
     }
+
+    public void addLifeBusinessCircle(LifeBusinessCircle circle){
+        circle.setDistrict(this);
+        lifeBusinessCicles.add(circle);
+    }
 }

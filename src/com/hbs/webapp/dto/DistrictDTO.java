@@ -7,19 +7,10 @@ import java.io.Serializable;
 /**
  * Created by Administrator on 14-1-26.
  */
-public class DistrictDTO implements Serializable {
-    private String cityCode;
-    private String districtName;
-    private String districtCode;
-    private String description;
-
-    public String getCityCode() {
-        return cityCode;
-    }
-
-    public void setCityCode(String cityCode) {
-        this.cityCode = cityCode;
-    }
+public class DistrictDTO extends CityDTO implements Serializable {
+    protected String districtName;
+    protected String districtCode;
+    protected String description;
 
     public String getDistrictName() {
         return districtName;
@@ -45,7 +36,7 @@ public class DistrictDTO implements Serializable {
         this.description = description;
     }
 
-    public District convertToDistrict(){
+    public District convertToDistrict() {
         District district = new District();
         district.setCityCode(cityCode);
         district.setDistrictCode(districtCode);

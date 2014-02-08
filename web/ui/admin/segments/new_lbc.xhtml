@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <p:panel id="newLBC" header="新建生活商业圈" toggleable="true" closable="false" toggleSpeed="500"
+             closeSpeed="500" widgetVar="lbcPanel" collapsed="true" >
+        <h:panelGrid columns="2" id="lbcEditSection">
+                <h:outputLabel for="lbcProvinceMenuList_new" value="省份:"/>
+                <p:selectOneMenu id="lbcProvinceMenuList_new"
+                                 value="#{supportDataMaintainView.lbcSearchCriteria.provinceCode}"
+                                 style="width: 120px;">
+                    <f:selectItems value="#{supportDataMaintainView.provinceList}" var="province"
+                                   itemLabel="#{province.provinceName}" itemValue="#{province.provinceCode}"/>
+                    <p:ajax update="lbcCityMenuList_new lbcDistinctList_new" listener="#{supportDataMaintainView.loadCityListFromProvinceCode}"/>
+                </p:selectOneMenu>
+
+                <h:outputLabel for="lbcCityMenuList_new" value="城市:"/>
+                <p:selectOneMenu id="lbcCityMenuList_new" value="#{supportDataMaintainView.lbcSearchCriteria.cityCode}">
+                    <f:selectItem itemLabel="选择城市" itemValue="" />
+                    <f:selectItems value="#{supportDataMaintainView.cityList}" var="city"
+                                   itemLabel="#{city.cityName}" itemValue="#{city.cityCode}"/>
+                    <p:ajax update="lbcDistinctList_new" listener="#{supportDataMaintainView.loadDistrictListFromCityCode}"/>
+                </p:selectOneMenu>
+
+                <h:outputLabel for="lbcDistinctList_new" value="区:"/>
+                <p:selectOneMenu id="lbcDistinctList_new" value="#{supportDataMaintainView.lbcSearchCriteria.districtCode}">
+                    <f:selectItem itemLabel="选择城市" itemValue="" />
+                    <f:selectItems value="#{supportDataMaintainView.districtList}" var="district"
+                                   itemLabel="#{district.districtName}" itemValue="#{district.districtCode}"/>
+                </p:selectOneMenu>
+
+            <h:outputLabel value="生活、商业圈名 :"></h:outputLabel>
+            <p:inputText required="true"
+                         value="#{supportDataMaintainView.lbcDTO.lbcName}"/>
+
+            <h:outputLabel value="区（县）代号 :"></h:outputLabel>
+            <p:inputText required="true"
+                         value="#{supportDataMaintainView.lbcDTO.lbcCode}"/>
+
+            <h:outputLabel value="说明 :"></h:outputLabel>
+            <p:inputTextarea rows="6" cols="33" value="#{supportDataMaintainView.lbcDTO.description}"/>
+        </h:panelGrid>
+        <p:commandButton id="btn_saveLBC" value="保存" validateClient="true" ajax="true" update="lbcDistinctTable newLBC"
+                         actionListener="#{supportDataMaintainView.addNewLifeBusinessCircle}">
+        </p:commandButton>
+    </p:panel>
+</ui:composition>
