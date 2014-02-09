@@ -1,7 +1,117 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
                 template="/WEB-INF/template/admin/admin_layout.xhtml">
-    <ui:define name="CenterContent">服务项维护</ui:define>
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewAction action="#{supportDataMaintainView.loadData}" onPostback="false"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="CenterContent">
+        <p:tabView id="serviceMaintainTabView">
+            <p:tab title="服务类别" id="serviceCategoryMaintain">
+                <h:form prependId="false" id="categoryForm">
+                <p:dataTable id="categoryList" value="#{supportDataMaintainView.serviceCategoryList}" var="category"
+                             paginator="true" rows="10"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                             editable="true">
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column headerText="类别名称" styleClass="table_header"/>
+                            <p:column headerText="类别代码" styleClass="table_header"/>
+                            <p:column headerText="类别顺序" styleClass="table_header"/>
+                            <p:column headerText="有效性" styleClass="table_header"/>
+                            <p:column headerText="更新" styleClass="table_header"/>
+                        </p:row>
+                    </p:columnGroup>
+                    <p:column styleClass="table_header">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{category.categoryName}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{category.categoryName}"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column styleClass="table_header">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{category.categoryCode}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{category.categoryCode}"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column styleClass="table_header">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{category.displaySeq}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{category.displaySeq}"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column styleClass="table_header">
+                        <h:outputText value="#{category.active}"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:rowEditor></p:rowEditor>
+                    </p:column>
+                </p:dataTable>
+                </h:form>
+            </p:tab>
+
+            <p:tab title="服务项" id="serviceItemMaintain">
+                <h:form prependId="false" id="serviceItemForm">
+                <h:panelGrid id="searchService" columns="2">
+                    <h:outputLabel for="serviceCategoryOneMenu" value="服务类别:"/>
+                    <p:selectOneMenu id="serviceCategoryOneMenu"
+                                     value="#{supportDataMaintainView.selectedServiceCategoryCode}"
+                                     style="width: 120px;">
+                        <f:selectItems value="#{supportDataMaintainView.serviceCategoryList}" var="category"
+                                       itemLabel="#{category.categoryName}" itemValue="#{category.id}"/>
+                        <p:ajax update="serviceItemList" listener="#{supportDataMaintainView.loadServiceItemListFromCategoryCode}"
+                                process="searchService"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <br/>
+
+                    <p:dataTable id="serviceItemList" value="#{supportDataMaintainView.serviceItemList}" var="serviceItem"
+                                 paginator="true" rows="10"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                                 editable="true">
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <p:column headerText="服务项名称"
+                                          styleClass="table_header"/>
+                                <p:column headerText="服务项代码" styleClass="table_header"/>
+                                <p:column headerText="有效性" styleClass="table_header"/>
+                            </p:row>
+                        </p:columnGroup>
+                        <p:column rowspan="5" styleClass="table_header">
+                            <h:outputText value="#{serviceItem.serviceName}"/>
+                        </p:column>
+
+                        <p:column styleClass="table_header">
+                            <h:outputText value="#{serviceItem.serviceCode}"/>
+                        </p:column>
+
+                        <p:column styleClass="table_header">
+                            <h:outputText value="#{serviceItem.active}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </p:tab>
+        </p:tabView>
+    </ui:define>
 </ui:composition>

@@ -1,17 +1,10 @@
 package com.hbs.domain.service;
 
+import com.hbs.domain.common.PersistenceDomain;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import com.hbs.domain.common.PersistenceDomain;
 
 /**
  * 这是系统提供的服务分类，类似于京东、淘宝的商品分类。暂定于两级，方便用户。但系统支持多级.用户点击类别，则会展开该类别所拥有的服务项目
@@ -43,6 +36,10 @@ public class ServiceCategory extends PersistenceDomain {
     @Basic
     @Column(name = "ACTIVE", nullable = true)
     private boolean active = true; // 是否激活
+
+    @Basic
+    @Column(name = "DISP_SEQUENCE", nullable = true)
+    private int displaySeq;
 
     @OneToMany(mappedBy = "serviceCategory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ServiceItem> serviceItemList = new ArrayList<ServiceItem>();
@@ -96,6 +93,14 @@ public class ServiceCategory extends PersistenceDomain {
 
     public void setServiceItemList(List<ServiceItem> serviceItemList) {
         this.serviceItemList = serviceItemList;
+    }
+
+    public int getDisplaySeq() {
+        return displaySeq;
+    }
+
+    public void setDisplaySeq(int displaySeq) {
+        this.displaySeq = displaySeq;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.hbs.webapp.view.admin;
 
 import com.hbs.domain.service.ServiceCategory;
+import com.hbs.domain.service.ServiceItem;
 import com.hbs.domain.support.City;
 import com.hbs.domain.support.District;
 import com.hbs.domain.support.LifeBusinessCircle;
@@ -33,6 +34,8 @@ public class SupportDataMaintainView extends BaseView {
     private CityDTO cityDTO = new CityDTO();
     private DistrictDTO districtDTO = new DistrictDTO();
     private LifeBusinessCircleDTO lbcDTO = new LifeBusinessCircleDTO();
+    private String selectedServiceCategoryCode = "";
+    private List<ServiceItem> serviceItemList = new ArrayList<ServiceItem>();
 
     public SupportDataMaintainView() {
 
@@ -110,6 +113,22 @@ public class SupportDataMaintainView extends BaseView {
         this.lbcDTO = lbcDTO;
     }
 
+    public String getSelectedServiceCategoryCode() {
+        return selectedServiceCategoryCode;
+    }
+
+    public void setSelectedServiceCategoryCode(String selectedServiceCategoryCode) {
+        this.selectedServiceCategoryCode = selectedServiceCategoryCode;
+    }
+
+    public List<ServiceItem> getServiceItemList() {
+        return serviceItemList;
+    }
+
+    public void setServiceItemList(List<ServiceItem> serviceItemList) {
+        this.serviceItemList = serviceItemList;
+    }
+
     @Override
     public void loadData() {
         logger.info("SupportDataMaintainView.loadData");
@@ -127,6 +146,17 @@ public class SupportDataMaintainView extends BaseView {
         String provinceCode = this.lbcSearchCriteria.getProvinceCode();
         if (StringUtils.isNotEmpty(provinceCode)) {
             cityList.addAll(this.supportDataService.getProvinceMap().get(provinceCode).getCities());
+        }
+    }
+
+    public void loadServiceItemListFromCategoryCode(){
+        logger.info("SupportDataMaintainView.loadServiceItemListFromCategoryCode");
+        serviceItemList = new ArrayList<ServiceItem>();
+        for(ServiceCategory category:this.serviceCategoryList){
+            if(category.getId().toString().equalsIgnoreCase(this.getSelectedServiceCategoryCode())){
+                serviceItemList = category.getServiceItemList();
+                break;
+            }
         }
     }
 
