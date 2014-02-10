@@ -2,3 +2,8 @@ hbs.iml
 MyGoodHelper.iml
 out/
 out/
+build/
+build/
+.classpath
+.project
+.settings/
