@@ -31,7 +31,7 @@ public class SupportDataServiceImpl implements SupportDataService {
     @Override
     @Cacheable("services")
     public List<ServiceCategory> findAllService() {
-        return serviceInfoRepository.findAll();
+        return serviceInfoRepository.findOrderByDisplaySeq();
     }
 
     @Override
@@ -49,5 +49,11 @@ public class SupportDataServiceImpl implements SupportDataService {
     @Caching(evict = { @CacheEvict(value="provinces",allEntries=true), @CacheEvict(value="provinceMap",allEntries=true) })
     public void saveProvice(Province province) {
         supportDataRepository.saveAndFlush(province);
+    }
+
+    @Override
+    @Caching(evict = { @CacheEvict(value="services",allEntries=true)})
+    public void saveServiceCategory(ServiceCategory category) {
+        serviceInfoRepository.saveAndFlush(category);
     }
 }

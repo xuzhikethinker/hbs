@@ -11,4 +11,5 @@ public interface SupportDataService {
     public List<ServiceCategory> findAllService();
     public Map<String, Province> getProvinceMap();
     public void saveProvice(Province province);
+    public void saveServiceCategory(ServiceCategory category);
 }

@@ -18,11 +18,13 @@
                              paginator="true" rows="10"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                              editable="true">
+                    <p:ajax event="rowEdit" listener="#{supportDataMaintainView.editServiceCategory}"/>
                     <p:columnGroup type="header">
                         <p:row>
                             <p:column headerText="类别名称" styleClass="table_header"/>
                             <p:column headerText="类别代码" styleClass="table_header"/>
                             <p:column headerText="类别顺序" styleClass="table_header"/>
+                            <p:column headerText="侧栏项数目" styleClass="table_header"/>
                             <p:column headerText="有效性" styleClass="table_header"/>
                             <p:column headerText="更新" styleClass="table_header"/>
                         </p:row>
@@ -61,6 +63,17 @@
                     </p:column>
 
                     <p:column styleClass="table_header">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{category.amountOnSideBar}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{category.amountOnSideBar}"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column styleClass="table_header">
                         <h:outputText value="#{category.active}"/>
                     </p:column>
 
@@ -90,24 +103,62 @@
                                  paginator="true" rows="10"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                                  editable="true">
+
                         <p:columnGroup type="header">
                             <p:row>
-                                <p:column headerText="服务项名称"
-                                          styleClass="table_header"/>
+                                <p:column headerText="服务项名称" styleClass="table_header"/>
                                 <p:column headerText="服务项代码" styleClass="table_header"/>
+                                <p:column headerText="优先级" styleClass="table_header"/>
                                 <p:column headerText="有效性" styleClass="table_header"/>
+                                <p:column headerText="更新" styleClass="table_header"/>
                             </p:row>
                         </p:columnGroup>
                         <p:column rowspan="5" styleClass="table_header">
-                            <h:outputText value="#{serviceItem.serviceName}"/>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{serviceItem.serviceName}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{serviceItem.serviceName}"/>
+                                </f:facet>
+                            </p:cellEditor>
                         </p:column>
 
                         <p:column styleClass="table_header">
-                            <h:outputText value="#{serviceItem.serviceCode}"/>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{serviceItem.serviceCode}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{serviceItem.serviceCode}"/>
+                                </f:facet>
+                            </p:cellEditor>
                         </p:column>
 
                         <p:column styleClass="table_header">
-                            <h:outputText value="#{serviceItem.active}"/>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{serviceItem.priorityWeight}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{serviceItem.priorityWeight}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column styleClass="table_header">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{serviceItem.active}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{serviceItem.active}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column>
+                            <p:rowEditor></p:rowEditor>
                         </p:column>
                     </p:dataTable>
                 </h:form>

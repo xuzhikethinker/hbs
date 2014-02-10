@@ -13,9 +13,12 @@ import com.hbs.webapp.view.BaseView;
 import com.hbs.webapp.view.criteria.LBCSearchCriteria;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.primefaces.event.RowEditEvent;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -242,5 +245,11 @@ public class SupportDataMaintainView extends BaseView {
         cityList.addAll(province.getCities());
     }
 
-
+    public void editServiceCategory(RowEditEvent event) {
+        logger.info("SupportDataMaintainView.editServiceCategory");
+        ServiceCategory category = (ServiceCategory) event.getObject();
+        FacesMessage msg = new FacesMessage("更新产品单元", category.getCategoryName() + " 产品单元成功更新");
+        supportDataService.saveServiceCategory(category);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 }
