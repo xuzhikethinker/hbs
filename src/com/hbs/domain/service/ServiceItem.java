@@ -36,6 +36,10 @@ public class ServiceItem extends PersistenceDomain {
     @Basic
     @Column(name = "ACTIVE", nullable = true)
     private boolean active = true;// 是否激活
+    
+    @Basic
+    @Column(name = "PRIORITY_WEIGHT", nullable = true)
+    private int priorityWeight = 0;// 优先级权重，数值越大，权重越大，则有可能会显示在侧栏。但是受限于侧栏允许显示的数量，见ServiceCategory.amountOnSideBar
 
     @ManyToOne
     // 可选属性optional=false,表示company不能为空
@@ -83,6 +87,14 @@ public class ServiceItem extends PersistenceDomain {
 
     public void setServiceCategory(ServiceCategory serviceCategory) {
         this.serviceCategory = serviceCategory;
+    }
+
+    public int getPriorityWeight() {
+      return priorityWeight;
+    }
+
+    public void setPriorityWeight(int priorityWeight) {
+      this.priorityWeight = priorityWeight;
     }
 
     @Override

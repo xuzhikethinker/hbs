@@ -40,6 +40,10 @@ public class ServiceCategory extends PersistenceDomain {
     @Basic
     @Column(name = "DISP_SEQUENCE", nullable = true)
     private int displaySeq;
+    
+    @Basic
+    @Column(name = "AMOUNT_ON_SIDE_BAR", nullable = true)
+    private int amountOnSideBar=6; //显示在侧栏的项目数量 
 
     @OneToMany(mappedBy = "serviceCategory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ServiceItem> serviceItemList = new ArrayList<ServiceItem>();
@@ -101,6 +105,14 @@ public class ServiceCategory extends PersistenceDomain {
 
     public void setDisplaySeq(int displaySeq) {
         this.displaySeq = displaySeq;
+    }
+
+    public int getAmountOnSideBar() {
+      return amountOnSideBar;
+    }
+
+    public void setAmountOnSideBar(int amountOnSideBar) {
+      this.amountOnSideBar = amountOnSideBar;
     }
 
     @Override
