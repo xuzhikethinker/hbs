@@ -48,7 +48,7 @@ public class ServiceProvider extends PersistenceDomain {
     private String providerLoginPassword;
 
     @Embedded
-    private Address address;
+    private Address address;  //定义了服务提供商所在的商业圈
 
     @Embedded
     private ContactInfo contactInfo;

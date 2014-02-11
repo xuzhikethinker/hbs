@@ -5,6 +5,7 @@
  */
 package com.hbs.webapp.view;
 
+import com.hbs.service.ServiceProviderService;
 import com.hbs.service.SupportDataService;
 
 import javax.faces.bean.ManagedProperty;
@@ -19,6 +20,9 @@ import javax.servlet.ServletContext;
 public abstract class BaseView {
     @ManagedProperty(value = "#{supportDataService}")
     protected SupportDataService supportDataService;
+    
+    @ManagedProperty(value = "#{serviceProviderService}")
+    protected ServiceProviderService serviceProviderService;
 
     public SupportDataService getSupportDataService() {
         return supportDataService;
@@ -26,6 +30,14 @@ public abstract class BaseView {
 
     public void setSupportDataService(SupportDataService supportDataService) {
         this.supportDataService = supportDataService;
+    }
+    
+    public ServiceProviderService getServiceProviderService() {
+      return serviceProviderService;
+    }
+
+    public void setServiceProviderService(ServiceProviderService serviceProviderService) {
+      this.serviceProviderService = serviceProviderService;
     }
 
     protected FacesContext getCurrentFacesContext() {

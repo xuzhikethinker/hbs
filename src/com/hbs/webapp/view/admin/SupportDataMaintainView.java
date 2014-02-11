@@ -244,12 +244,53 @@ public class SupportDataMaintainView extends BaseView {
         cityList = new ArrayList<City>();
         cityList.addAll(province.getCities());
     }
+    
+    public void editProvince(RowEditEvent event) {
+      logger.info("SupportDataMaintainView.editProvince");
+      Province province = (Province) event.getObject();
+      supportDataService.saveProvice(province);
+  }
+    
+    public void editCity(RowEditEvent event) {
+      logger.info("SupportDataMaintainView.editCity");
+      City city = (City) event.getObject();
+      Province province = city.getProvince();
+      supportDataService.saveProvice(province);
+  }
+    
+    public void editDistrict(RowEditEvent event) {
+      logger.info("SupportDataMaintainView.editDistrict");
+      District district = (District) event.getObject();
+      City city = district.getCity();
+      Province province = city.getProvince();
+      supportDataService.saveProvice(province);
+  }    
+    
+    
+    public void editLifeBusinessCircle(RowEditEvent event) {
+      logger.info("SupportDataMaintainView.editLifeBusinessCircle");
+      LifeBusinessCircle lbc = (LifeBusinessCircle)event.getObject();
+      District district = lbc.getDistrict();
+      City city = district.getCity();
+      Province province = city.getProvince();
+      supportDataService.saveProvice(province);
+  } 
+    
 
     public void editServiceCategory(RowEditEvent event) {
         logger.info("SupportDataMaintainView.editServiceCategory");
         ServiceCategory category = (ServiceCategory) event.getObject();
-        FacesMessage msg = new FacesMessage("更新产品单元", category.getCategoryName() + " 产品单元成功更新");
+        FacesMessage msg = new FacesMessage("更新产品类别", category.getCategoryName() + " 产品类别成功更新");
         supportDataService.saveServiceCategory(category);
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+    
+    public void editServiceItem(RowEditEvent event) {
+      logger.info("SupportDataMaintainView.editServiceItem");
+      ServiceItem serviceItem = (ServiceItem)event.getObject();
+      ServiceCategory category = serviceItem.getServiceCategory();
+      FacesMessage msg = new FacesMessage("更新产品单元", category.getCategoryName() + " 产品单元成功更新");
+      supportDataService.saveServiceCategory(category);
+      FacesContext.getCurrentInstance().addMessage(null, msg);
+  }
 }
