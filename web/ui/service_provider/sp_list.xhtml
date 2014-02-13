@@ -12,9 +12,19 @@
     </ui:define>
     <ui:define name="CrumbNavigation">#{facesContext.application.projectStage}</ui:define>
     <ui:define name="CenterContent">
-        <o:cache>
-            <o:cacheValue name="categoryList" value="#{supportDataMaintainView.serviceCategoryList}"/>
-        <ui:repeat value="#{categoryList}" var="category">
+        <!--<o:cache>-->
+            <!--<o:cacheValue name="categoryList" value="#{supportDataMaintainView.serviceCategoryList}"/>-->
+        <!--<ui:repeat value="#{categoryList}" var="category">-->
+            <!--<p:panel header="#{category.categoryName}">-->
+                <!--<ui:repeat value="#{category.serviceItemList}" var="service">-->
+                    <!--<h:link outcome="/ui/service_provider/sp_list.xhtml?t=#{category.categoryCode}&amp;code=#{service.serviceCode}" value="#{service.serviceName}" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />-->
+                <!--</ui:repeat>-->
+            <!--</p:panel>-->
+            <!--<p:spacer height="1"></p:spacer>-->
+        <!--</ui:repeat>-->
+        <!--</o:cache>-->
+
+        <ui:repeat value="#{supportDataMaintainView.serviceCategoryList}" var="category">
             <p:panel header="#{category.categoryName}">
                 <ui:repeat value="#{category.serviceItemList}" var="service">
                     <h:link outcome="/ui/service_provider/sp_list.xhtml?t=#{category.categoryCode}&amp;code=#{service.serviceCode}" value="#{service.serviceName}" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
@@ -22,7 +32,6 @@
             </p:panel>
             <p:spacer height="1"></p:spacer>
         </ui:repeat>
-        </o:cache>
  <!--       <p:panel header="餐饮美食">
             <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner&amp;code=1000100" value="小吃快餐" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
             <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="川菜" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />

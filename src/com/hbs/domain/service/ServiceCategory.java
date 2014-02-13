@@ -46,6 +46,7 @@ public class ServiceCategory extends PersistenceDomain {
     private int amountOnSideBar=6; //显示在侧栏的项目数量 
 
     @OneToMany(mappedBy = "serviceCategory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OrderBy(value = "priorityWeight DESC")
     private List<ServiceItem> serviceItemList = new ArrayList<ServiceItem>();
 
     public ServiceCategory() {

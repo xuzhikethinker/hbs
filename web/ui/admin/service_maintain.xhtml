@@ -103,7 +103,7 @@
                                  paginator="true" rows="10"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                                  editable="true">
-
+                        <p:ajax event="rowEdit" listener="#{supportDataMaintainView.editServiceItem}"/>
                         <p:columnGroup type="header">
                             <p:row>
                                 <p:column headerText="服务项名称" styleClass="table_header"/>
