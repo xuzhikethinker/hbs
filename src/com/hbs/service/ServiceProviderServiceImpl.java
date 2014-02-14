@@ -9,11 +9,11 @@ import com.hbs.domain.service.provider.ServiceProvider;
 import com.hbs.repository.ServiceProviderRepository;
 
 @Service("serviceProviderService")
-public class ServiceProviderServiceImpl implements ServiceProviderService {
+public class ServiceProviderServiceImpl extends AbstractBaseService implements ServiceProviderService {
 
   @Autowired
   private ServiceProviderRepository serviceProviderRepository;
-  
+
   @Override
   public List<ServiceProvider> findAllServiceProvider() {
     return serviceProviderRepository.findAll();
@@ -24,4 +24,11 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
     return serviceProviderRepository.saveAndFlush(serviceProvider);
   }
 
+  public List<ServiceProvider> findByLBCAndServiceKey(String lbcCode, String serviceKeys) {
+    return serviceProviderRepository.findByLBCAndServiceKey(lbcCode, serviceKeys);
+  }
+
+  public ServiceProvider findServiceProviderById(Long id) {
+    return serviceProviderRepository.findOne(id);
+  }
 }

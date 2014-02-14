@@ -4,6 +4,7 @@ import com.hbs.domain.service.ServiceCategory;
 import com.hbs.domain.support.Province;
 import com.hbs.repository.ServiceInfoRepository;
 import com.hbs.repository.SupportDataRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,8 +16,9 @@ import java.util.List;
 import java.util.Map;
 
 @Service("supportDataService")
-public class SupportDataServiceImpl implements SupportDataService {
+public class SupportDataServiceImpl extends AbstractBaseService implements SupportDataService {
 
+  
     @Autowired
     private SupportDataRepository supportDataRepository;
 

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  * @author develop
  */
 @Service("serviceInfoService")
-public class ServiceInfoServiceImpl implements ServiceInfoService {
+public class ServiceInfoServiceImpl extends AbstractBaseService implements ServiceInfoService {
 
     @Autowired
     ServiceInfoRepository serviceInfoRepository;
