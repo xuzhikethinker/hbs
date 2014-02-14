@@ -1,9 +1,9 @@
 package com.hbs.webapp.view;
 
+import com.hbs.domain.service.provider.ServiceProvider;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.hbs.domain.service.provider.ServiceProvider;
 
 public class ServiceProviderMaintainView extends BaseView {
 
@@ -28,7 +28,7 @@ public class ServiceProviderMaintainView extends BaseView {
 
   @Override
   public void loadData() {
-    ServiceProviderList = this.serviceProviderService.findAllServiceProvider();
+//    ServiceProviderList = this.serviceProviderService.findAllServiceProvider();
   }
   
   public void saveServiceProvider(){

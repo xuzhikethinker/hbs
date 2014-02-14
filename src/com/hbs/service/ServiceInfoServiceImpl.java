@@ -8,10 +8,13 @@ package com.hbs.service;
 
 import com.hbs.domain.service.ServiceCategory;
 import com.hbs.repository.ServiceInfoRepository;
-import java.util.List;
+import com.uaihebert.factory.EasyCriteriaFactory;
+import com.uaihebert.model.EasyCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  *
@@ -26,6 +29,8 @@ public class ServiceInfoServiceImpl extends AbstractBaseService implements Servi
     @Override
     @Cacheable(value="serviceCategoryCache")
     public List<ServiceCategory> findAllServiceCategory() {
+        EasyCriteria<ServiceCategory> easyCriteria = EasyCriteriaFactory.createQueryCriteria(this.getEntityManager(), ServiceCategory.class);
+        List<ServiceCategory> results = easyCriteria.getResultList();
         return serviceInfoRepository.findAll();
     }
     

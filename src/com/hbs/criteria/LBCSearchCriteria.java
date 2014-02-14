@@ -1,4 +1,4 @@
-package com.hbs.webapp.view.criteria;
+package com.hbs.criteria;
 
 import java.io.Serializable;
 

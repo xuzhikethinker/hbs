@@ -1,12 +1,11 @@
 package com.hbs.service;
 
-import java.util.List;
-
+import com.hbs.domain.service.provider.ServiceProvider;
+import com.hbs.repository.ServiceProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hbs.domain.service.provider.ServiceProvider;
-import com.hbs.repository.ServiceProviderRepository;
+import java.util.List;
 
 @Service("serviceProviderService")
 public class ServiceProviderServiceImpl extends AbstractBaseService implements ServiceProviderService {
@@ -25,7 +24,8 @@ public class ServiceProviderServiceImpl extends AbstractBaseService implements S
   }
 
   public List<ServiceProvider> findByLBCAndServiceKey(String lbcCode, String serviceKeys) {
-    return serviceProviderRepository.findByLBCAndServiceKey(lbcCode, serviceKeys);
+    //return serviceProviderRepository.findAll();
+      return serviceProviderRepository.findByLBCAndServiceKey(lbcCode,serviceKeys);
   }
 
   public ServiceProvider findServiceProviderById(Long id) {

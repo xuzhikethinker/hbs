@@ -5,6 +5,8 @@ import com.hbs.domain.support.Province;
 import com.hbs.repository.ServiceInfoRepository;
 import com.hbs.repository.SupportDataRepository;
 
+import com.uaihebert.factory.EasyCriteriaFactory;
+import com.uaihebert.model.EasyCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -33,6 +35,8 @@ public class SupportDataServiceImpl extends AbstractBaseService implements Suppo
     @Override
     @Cacheable("services")
     public List<ServiceCategory> findAllService() {
+        EasyCriteria<ServiceCategory> easyCriteria = EasyCriteriaFactory.createQueryCriteria(this.getEntityManager(), ServiceCategory.class);
+        List<ServiceCategory> results = easyCriteria.getResultList();
         return serviceInfoRepository.findOrderByDisplaySeq();
     }
 

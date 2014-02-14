@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                template="/WEB-INF/template/layout.xhtml">
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewAction action="#{supportDataMaintainView.loadData}" onPostback="false"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="CrumbNavigation">服务列表</ui:define>
+    <ui:define name="CenterContent">
+        <!--<o:cache>-->
+        <!--<o:cacheValue name="categoryList" value="#{supportDataMaintainView.serviceCategoryList}"/>-->
+        <!--<ui:repeat value="#{categoryList}" var="category">-->
+        <!--<p:panel header="#{category.categoryName}">-->
+        <!--<ui:repeat value="#{category.serviceItemList}" var="service">-->
+        <!--<h:link outcome="/ui/service_provider/sp_list.xhtml?t=#{category.categoryCode}&amp;code=#{service.serviceCode}" value="#{service.serviceName}" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />-->
+        <!--</ui:repeat>-->
+        <!--</p:panel>-->
+        <!--<p:spacer height="1"></p:spacer>-->
+        <!--</ui:repeat>-->
+        <!--</o:cache>-->
+
+        <ui:repeat value="#{supportDataMaintainView.serviceCategoryList}" var="category">
+            <p:panel header="#{category.categoryName}">
+                <ui:repeat value="#{category.serviceItemList}" var="service">
+                    <h:link outcome="/ui/service_provider/sp_list.xhtml?t=#{category.categoryCode}&amp;code=#{service.serviceCode}" value="#{service.serviceName}" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                </ui:repeat>
+            </p:panel>
+            <p:spacer height="1"></p:spacer>
+        </ui:repeat>
+        <!--       <p:panel header="餐饮美食">
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner&amp;code=1000100" value="小吃快餐" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="川菜" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="湘菜" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="西餐" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="火锅" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="面包蛋糕" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="粤菜" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="甜品饮品" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="海鲜" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+               </p:panel>
+               <p:spacer height="1"></p:spacer>
+
+               <p:panel header="休闲娱乐">
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="KTV" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="咖啡与茶" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="酒吧" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="运动健身" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="足浴洗浴" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="电影院" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="演出场所" style="text-decoration: none;"></h:link><p:spacer width="10" height="0"/>
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="美容美体" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="电玩游戏厅" style="text-decoration:none"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="书店图书馆" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
+                   <h:link outcome="/ui/service_provider/sp_list.xhtml?t=dinner" value="公园景点" style="text-decoration: none;"></h:link><p:spacer width="10" height="0"/>
+               </p:panel>
+
+               <p:spacer height="1"></p:spacer>
+               <p:panel header="购物商店"></p:panel>
+               <p:spacer height="1"></p:spacer>
+               <p:panel header="维修服务"></p:panel>
+               <p:spacer height="1"></p:spacer>
+               <p:panel header="银行服务"></p:panel>
+               <p:spacer height="1"></p:spacer>
+               <p:panel header="医疗健康"></p:panel>
+               <p:spacer height="1"></p:spacer>
+               <p:panel header="水电部门"></p:panel>
+               <p:spacer height="1"></p:spacer>
+               <p:panel header="果蔬服务"></p:panel>
+               <p:spacer height="1"></p:spacer>
+               <p:panel header="便民服务"></p:panel>-->
+    </ui:define>
+</ui:composition>

@@ -1,4 +1,4 @@
-package com.hbs.webapp.dto;
+package com.hbs.dto;
 
 import com.hbs.domain.support.City;
 

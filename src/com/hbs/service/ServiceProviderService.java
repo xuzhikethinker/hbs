@@ -1,8 +1,8 @@
 package com.hbs.service;
 
-import java.util.List;
-
 import com.hbs.domain.service.provider.ServiceProvider;
+
+import java.util.List;
 
 public interface ServiceProviderService {
   public List<ServiceProvider> findAllServiceProvider();
