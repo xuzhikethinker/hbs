@@ -28,12 +28,12 @@ import java.util.List;
 public class SupportDataMaintainView extends BaseView {
     private static Logger logger = Logger.getLogger(SupportDataMaintainView.class);
 
-    private LBCSearchCriteria lbcSearchCriteria = new LBCSearchCriteria();
-    private List<Province> provinceList = new ArrayList<Province>();
-    private List<City> cityList = new ArrayList<City>();
-    private List<District> districtList = new ArrayList<District>();
+    protected LBCSearchCriteria lbcSearchCriteria = new LBCSearchCriteria();
+    protected List<Province> provinceList = new ArrayList<Province>();
+    protected List<City> cityList = new ArrayList<City>();
+    protected List<District> districtList = new ArrayList<District>();
     private List<ServiceCategory> serviceCategoryList = new ArrayList<ServiceCategory>();
-    private List<LifeBusinessCircle> lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
+    protected List<LifeBusinessCircle> lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
     private CityDTO cityDTO = new CityDTO();
     private DistrictDTO districtDTO = new DistrictDTO();
     private LifeBusinessCircleDTO lbcDTO = new LifeBusinessCircleDTO();
@@ -136,6 +136,7 @@ public class SupportDataMaintainView extends BaseView {
     public void loadData() {
         logger.info("SupportDataMaintainView.loadData");
         provinceList = this.supportDataService.findAllProvince();
+
         serviceCategoryList = this.supportDataService.findAllService();
     }
 

@@ -8,6 +8,7 @@ import java.util.Map;
 
 public interface SupportDataService {
     public List<Province> findAllProvince();
+    public List<Province> findProvinceWithLBCList();
     public List<ServiceCategory> findAllService();
     public Map<String, Province> getProvinceMap();
     public void saveProvice(Province province);

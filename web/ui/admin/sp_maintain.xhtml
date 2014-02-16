@@ -7,10 +7,82 @@
                 template="/WEB-INF/template/admin/admin_layout.xhtml">
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewAction action="#{supportDataMaintainView.loadData}" onPostback="false"/>
+            <f:viewAction action="#{serviceProviderMaintainView.loadData}" onPostback="false"/>
         </f:metadata>
     </ui:define>
-    <ui:define name="MaintainFunctionTitle">新增服务提供商</ui:define>
     <ui:define name="CenterContent">
+        <h:form prependId="false" id="serviceProviderForm">
+            <p:panel header="创建服务提供商">
+                <h:panelGrid id="searchLBC1" columns="6">
+                    <h:outputLabel for="lbcProvinceMenuList1" value="省份:"/>
+                    <p:selectOneMenu id="lbcProvinceMenuList1"
+                                     value="#{serviceProviderMaintainView.lbcSearchCriteria.provinceCode}"
+                                     style="width: 120px;">
+                        <f:selectItem itemLabel="选择省份" itemValue=""></f:selectItem>
+                        <f:selectItems value="#{serviceProviderMaintainView.provinceWithLBCList}" var="province"
+                                       itemLabel="#{province.provinceName}-#{province.provinceCode}" itemValue="#{province.provinceCode}"/>
+                        <p:ajax update="lbcCityMenuList1" listener="#{serviceProviderMaintainView.loadCityListFromProvinceCode}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="lbcCityMenuList1" value="城市:"/>
+                    <p:selectOneMenu id="lbcCityMenuList1" value="#{serviceProviderMaintainView.lbcSearchCriteria.cityCode}">
+                        <f:selectItem itemLabel="选择城市" itemValue="" />
+                        <f:selectItems value="#{serviceProviderMaintainView.cityList}" var="city"
+                                       itemLabel="#{city.cityName}" itemValue="#{city.cityCode}"/>
+                        <p:ajax listener="#{serviceProviderMaintainView.loadDistrictListFromCityCode}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="lbcDistinctList" value="生活商业圈(区):"/>
+                    <p:selectOneMenu id="lbcDistinctList" value="#{serviceProviderMaintainView.lbcSearchCriteria.districtCode}">
+                        <f:selectItem itemLabel="选择城市" itemValue="" />
+                        <f:selectItems value="#{serviceProviderMaintainView.districtList}" var="district"
+                                       itemLabel="#{district.districtName}" itemValue="#{district.districtCode}"/>
+                        <p:ajax listener="#{serviceProviderMaintainView.loadLBCFromDistrictCode}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+
+                <!--<h:panelGrid id="grid" columns="3" style="margin-bottom:10px">-->
+                    <!--<h:outputLabel for="lbcCode" value="选择商务圈:" />-->
+                    <!--<p:commandLink id="lbcCode" value="Basic" type="button" />-->
+                    <!--<p:megaMenu>-->
+                    <!--<p:submenu label="TV" icon="ui-icon-check">-->
+                        <!--<p:column>-->
+                            <!--<p:submenu label="TV.1">-->
+                                <!--<p:menuitem value="TV.1.1" url="#" />-->
+                                <!--<p:menuitem value="TV.1.2" url="#" />-->
+                            <!--</p:submenu>-->
+                            <!--<p:submenu label="TV.2">-->
+                                <!--<p:menuitem value="TV.2.1" url="#" />-->
+                                <!--<p:menuitem value="TV.2.2" url="#" />-->
+                                <!--<p:menuitem value="TV.2.3" url="#" />-->
+                            <!--</p:submenu>-->
+                            <!--<p:submenu label="TV.3">-->
+                                <!--<p:menuitem value="TV.3.1" url="#" />-->
+                                <!--<p:menuitem value="TV.3.2" url="#" />-->
+                            <!--</p:submenu>-->
+                        <!--</p:column>-->
+
+                        <!--<p:column>-->
+                            <!--<p:submenu label="TV.4">-->
+                                <!--<p:menuitem value="TV.4.1" url="#" />-->
+                                <!--<p:menuitem value="TV.4.2" url="#" />-->
+                            <!--</p:submenu>-->
+                            <!--<p:submenu label="TV.5">-->
+                                <!--<p:menuitem value="TV.5.1" url="#" />-->
+                                <!--<p:menuitem value="TV.5.2" url="#" />-->
+                                <!--<p:menuitem value="TV.5.3" url="#" />-->
+                            <!--</p:submenu>-->
+                        <!--</p:column>-->
+                    <!--</p:submenu>-->
+                    <!--</p:megaMenu>-->
+                    <!--<p:overlayPanel id="chartPanel" for="lbcCode" hideEffect="fade">-->
+                        <!--天天天天天天-->
+                    <!--</p:overlayPanel>-->
+
+                    <!--<h:outputLabel for="spName" value="提供商名字:" />-->
+                    <!--<p:inputText id="spName" value="#{personBean.firstname}" />-->
+                <!--</h:panelGrid>-->
+            </p:panel>
+        </h:form>
     </ui:define>
 </ui:composition>

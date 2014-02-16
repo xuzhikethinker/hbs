@@ -1,6 +1,7 @@
 package com.hbs.domain.support;
 
 import com.hbs.domain.common.PersistenceDomain;
+import org.apache.commons.collections4.CollectionUtils;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -91,6 +92,10 @@ public class District extends PersistenceDomain {
 
     public City getCity() {
         return city;
+    }
+
+    public boolean isContainLBC(){
+        return CollectionUtils.isNotEmpty(lifeBusinessCicles);
     }
 
     public void setCity(City city) {

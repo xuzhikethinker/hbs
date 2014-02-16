@@ -1,5 +1,6 @@
 package com.hbs.domain.support;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
@@ -97,6 +98,20 @@ public class City extends AbstractPersistable<Long> {
 
     public void setDistricts(Set<District> districts) {
         this.districts = districts;
+    }
+
+    public boolean isContainDistrict() {
+        return CollectionUtils.isNotEmpty(districts);
+    }
+
+    public List<District> getDistrictWithLBCList(){
+        List<District> activeDistrictList = new ArrayList<District>();
+        for(District district:this.getDistrictList()){
+            if(district.isContainLBC()){
+                activeDistrictList.add(district);
+            }
+        }
+        return activeDistrictList;
     }
 
     public void addDistrict(District district){

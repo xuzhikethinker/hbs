@@ -25,7 +25,7 @@
 
                 <h:outputLabel for="lbcDistinctList_new" value="区:"/>
                 <p:selectOneMenu id="lbcDistinctList_new" value="#{supportDataMaintainView.lbcSearchCriteria.districtCode}">
-                    <f:selectItem itemLabel="选择城市" itemValue="" />
+                    <f:selectItem itemLabel="选择区" itemValue="" />
                     <f:selectItems value="#{supportDataMaintainView.districtList}" var="district"
                                    itemLabel="#{district.districtName}" itemValue="#{district.districtCode}"/>
                 </p:selectOneMenu>
