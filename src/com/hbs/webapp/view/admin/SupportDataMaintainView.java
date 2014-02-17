@@ -28,15 +28,15 @@ import java.util.List;
 public class SupportDataMaintainView extends BaseView {
     private static Logger logger = Logger.getLogger(SupportDataMaintainView.class);
 
-    protected LBCSearchCriteria lbcSearchCriteria = new LBCSearchCriteria();
     protected List<Province> provinceList = new ArrayList<Province>();
     protected List<City> cityList = new ArrayList<City>();
     protected List<District> districtList = new ArrayList<District>();
-    private List<ServiceCategory> serviceCategoryList = new ArrayList<ServiceCategory>();
     protected List<LifeBusinessCircle> lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
+    protected LBCSearchCriteria lbcSearchCriteria = new LBCSearchCriteria();
     private CityDTO cityDTO = new CityDTO();
     private DistrictDTO districtDTO = new DistrictDTO();
     private LifeBusinessCircleDTO lbcDTO = new LifeBusinessCircleDTO();
+    private List<ServiceCategory> serviceCategoryList = new ArrayList<ServiceCategory>();
     private String selectedServiceCategoryCode = "";
     private List<ServiceItem> serviceItemList = new ArrayList<ServiceItem>();
 
@@ -136,21 +136,29 @@ public class SupportDataMaintainView extends BaseView {
     public void loadData() {
         logger.info("SupportDataMaintainView.loadData");
         provinceList = this.supportDataService.findAllProvince();
-
         serviceCategoryList = this.supportDataService.findAllService();
     }
 
     public void loadCityListFromProvinceCode() {
         logger.info("SupportDataMaintainView.loadCityListFromProvinceCode");
-        districtList = new ArrayList<District>();
-        lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
-        cityList = new ArrayList<City>();
-        lbcSearchCriteria.setCityCode(null);
-        lbcSearchCriteria.setDistrictCode(null);
-        String provinceCode = this.lbcSearchCriteria.getProvinceCode();
-        if (StringUtils.isNotEmpty(provinceCode)) {
-            cityList.addAll(this.supportDataService.getProvinceMap().get(provinceCode).getCities());
+        loadCityListFromProvinceCode(false);
+    }
+    
+    protected void loadCityListFromProvinceCode(boolean containLBC){
+      districtList = new ArrayList<District>();
+      lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
+      cityList = new ArrayList<City>();
+      lbcSearchCriteria.setCityCode(null);
+      lbcSearchCriteria.setDistrictCode(null);
+      String provinceCode = this.lbcSearchCriteria.getProvinceCode();
+      if (StringUtils.isNotEmpty(provinceCode)) {
+        if(containLBC){
+          cityList.addAll(this.supportDataService.getProvinceMap().get(provinceCode).getCityWithLBCList());
+        }else{
+          cityList.addAll(this.supportDataService.getProvinceMap().get(provinceCode).getCities());
         }
+      }
+      
     }
 
     public void loadServiceItemListFromCategoryCode(){
@@ -183,15 +191,24 @@ public class SupportDataMaintainView extends BaseView {
 
     public void loadDistrictListFromCityCode() {
         logger.info("SupportDataMaintainView.loadDistrictListFromCityCode");
-        districtList = new ArrayList<District>();
-        lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
-        String provinceCode = this.lbcSearchCriteria.getProvinceCode();
-        String cityCode = this.lbcSearchCriteria.getCityCode();
-        lbcSearchCriteria.setDistrictCode(null);
-        if (StringUtils.isNotEmpty(provinceCode)) {
-            Province province = this.supportDataService.getProvinceMap().get(provinceCode);
-            this.districtList.addAll(province.getCityFromCode(cityCode).getDistrictList());
+        loadDistrictListFromCityCode(false);
+    }
+    
+    protected void loadDistrictListFromCityCode(boolean containLBC){
+      districtList = new ArrayList<District>();
+      lifeBusinessCircleList = new ArrayList<LifeBusinessCircle>();
+      String provinceCode = this.lbcSearchCriteria.getProvinceCode();
+      String cityCode = this.lbcSearchCriteria.getCityCode();
+      lbcSearchCriteria.setDistrictCode(null);
+      if (StringUtils.isNotEmpty(provinceCode)) {
+        Province province = this.supportDataService.getProvinceMap().get(provinceCode);
+        if(containLBC){
+          this.districtList.addAll(province.getCityFromCode(cityCode).getDistrictWithLBCList());
+        }else{
+          this.districtList.addAll(province.getCityFromCode(cityCode).getDistrictList());
         }
+      }
+      
     }
 
     public void addNewCity(ActionEvent actionEvent) {
