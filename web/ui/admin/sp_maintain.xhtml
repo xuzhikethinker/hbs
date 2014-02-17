@@ -13,7 +13,7 @@
     <ui:define name="CenterContent">
         <h:form prependId="false" id="serviceProviderForm">
             <p:panel header="创建服务提供商">
-                <h:panelGrid id="searchLBC1" columns="6">
+                <h:panelGrid id="searchLBC" columns="8">
                     <h:outputLabel for="lbcProvinceMenuList1" value="省份:"/>
                     <p:selectOneMenu id="lbcProvinceMenuList1"
                                      value="#{serviceProviderMaintainView.lbcSearchCriteria.provinceCode}"
@@ -21,24 +21,45 @@
                         <f:selectItem itemLabel="选择省份" itemValue=""></f:selectItem>
                         <f:selectItems value="#{serviceProviderMaintainView.provinceWithLBCList}" var="province"
                                        itemLabel="#{province.provinceName}-#{province.provinceCode}" itemValue="#{province.provinceCode}"/>
-                        <p:ajax update="lbcCityMenuList1" listener="#{serviceProviderMaintainView.loadCityListFromProvinceCode}"/>
+                        <p:ajax update="lbcCityMenuList lbcDistinctList lbcList" listener="#{serviceProviderMaintainView.loadCityListFromProvinceCode}"/>
                     </p:selectOneMenu>
 
-                    <h:outputLabel for="lbcCityMenuList1" value="城市:"/>
-                    <p:selectOneMenu id="lbcCityMenuList1" value="#{serviceProviderMaintainView.lbcSearchCriteria.cityCode}">
+                    <h:outputLabel for="lbcCityMenuList" value="城市:"/>
+                    <p:selectOneMenu id="lbcCityMenuList" value="#{serviceProviderMaintainView.lbcSearchCriteria.cityCode}">
                         <f:selectItem itemLabel="选择城市" itemValue="" />
                         <f:selectItems value="#{serviceProviderMaintainView.cityList}" var="city"
                                        itemLabel="#{city.cityName}" itemValue="#{city.cityCode}"/>
-                        <p:ajax listener="#{serviceProviderMaintainView.loadDistrictListFromCityCode}"/>
+                        <p:ajax update="lbcDistinctList lbcList" listener="#{serviceProviderMaintainView.loadDistrictListFromCityCode}"/>
                     </p:selectOneMenu>
 
-                    <h:outputLabel for="lbcDistinctList" value="生活商业圈(区):"/>
+                    <h:outputLabel for="lbcDistinctList" value="所属区:"/>
                     <p:selectOneMenu id="lbcDistinctList" value="#{serviceProviderMaintainView.lbcSearchCriteria.districtCode}">
-                        <f:selectItem itemLabel="选择城市" itemValue="" />
+                        <f:selectItem itemLabel="选择区" itemValue="" />
                         <f:selectItems value="#{serviceProviderMaintainView.districtList}" var="district"
                                        itemLabel="#{district.districtName}" itemValue="#{district.districtCode}"/>
-                        <p:ajax listener="#{serviceProviderMaintainView.loadLBCFromDistrictCode}"/>
+                        <p:ajax update="lbcList" listener="#{serviceProviderMaintainView.loadLBCFromDistrictCode}"/>
                     </p:selectOneMenu>
+
+                    <h:outputLabel for="lbcList" value="商业生活圈:"/>
+                    <p:selectOneMenu id="lbcList" value="#{serviceProviderMaintainView.lbcSearchCriteria.lbcCode}">
+                        <f:selectItem itemLabel="选择圈" itemValue="" />
+                        <f:selectItems value="#{serviceProviderMaintainView.lifeBusinessCircleList}" var="lbc"
+                                       itemLabel="#{lbc.circleName}" itemValue="#{lbc.circleCode}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+
+                <h:panelGrid id="serviceProviderPanel" columns="2">
+                    <h:outputLabel for="spName" value="服务提供商名字:"/>
+                    <h:inputText id="spName" value="#{serviceProviderMaintainView.serviceProvider.providerName}"  style="width: 350px;"/>
+
+                    <h:outputLabel for="spAddr" value="地址:"/>
+                    <h:inputText id="spAddr" value="#{serviceProviderMaintainView.serviceProvider.address.addressLine}"  style="width: 450px;"/>
+
+                    <h:outputLabel for="spContactName" value="联系人:"/>
+                    <h:inputText id="spContactName" value="#{serviceProviderMaintainView.serviceProvider.contactInfo.contractPerson}"  style="width: 300px;"/>
+
+                    <h:outputLabel for="spContactPhone" value="联系电话:"/>
+                    <h:inputText id="spContactPhone" value="#{serviceProviderMaintainView.serviceProvider.contactInfo.contractPhone}"  style="width: 300px;"/>
                 </h:panelGrid>
 
                 <!--<h:panelGrid id="grid" columns="3" style="margin-bottom:10px">-->

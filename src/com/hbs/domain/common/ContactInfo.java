@@ -1,7 +1,10 @@
 package com.hbs.domain.common;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import com.hbs.domain.service.provider.AvailableService;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Embeddable
 public class ContactInfo {
@@ -16,6 +19,9 @@ public class ContactInfo {
 
 	@Column(name = "QQ_NUMBER")
 	private String qqNum;
+
+    @OneToMany(mappedBy = "contactInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<ContactMethod> contactMethodList = new ArrayList<ContactMethod>();
 
 	public String getContractPerson() {
 		return contractPerson;
@@ -49,4 +55,11 @@ public class ContactInfo {
 		this.qqNum = qqNum;
 	}
 
+    public List<ContactMethod> getContactMethodList() {
+        return contactMethodList;
+    }
+
+    public void setContactMethodList(List<ContactMethod> contactMethodList) {
+        this.contactMethodList = contactMethodList;
+    }
 }
