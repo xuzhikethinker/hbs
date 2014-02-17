@@ -21,23 +21,23 @@
             </p:selectOneMenu>-->
             <ui:include src="city_selector.xhtml">
                 <ui:param name="componentID" value="editCityPanel"></ui:param>
-                <ui:param name="view" value="#{supportDataMaintainView}"></ui:param>
+                <ui:param name="view" value="#{locationMaintainView}"></ui:param>
                 <ui:param name="refreshTable" value="true"></ui:param>
             </ui:include>
 
             <h:outputLabel value="区（县）名 :"></h:outputLabel>
             <p:inputText required="true"
-                         value="#{supportDataMaintainView.districtDTO.districtName}"/>
+                         value="#{locationMaintainView.districtDTO.districtName}"/>
 
             <h:outputLabel value="区（县）代号 :"></h:outputLabel>
             <p:inputText required="true"
-                         value="#{supportDataMaintainView.districtDTO.districtCode}"/>
+                         value="#{locationMaintainView.districtDTO.districtCode}"/>
 
             <h:outputLabel value="说明 :"></h:outputLabel>
-            <p:inputTextarea rows="6" cols="33" value="#{supportDataMaintainView.districtDTO.description}"/>
+            <p:inputTextarea rows="6" cols="33" value="#{locationMaintainView.districtDTO.description}"/>
         </h:panelGrid>
         <p:commandButton id="btn_saveDistrict" value="保存" validateClient="true" ajax="true" update="newDistrict"
-                         actionListener="#{supportDataMaintainView.addNewDistrict}">
+                         actionListener="#{locationMaintainView.addNewDistrict}">
         </p:commandButton>
     </p:panel>
 </ui:composition>

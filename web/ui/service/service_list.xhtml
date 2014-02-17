@@ -7,7 +7,7 @@
                 template="/WEB-INF/template/layout.xhtml">
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewAction action="#{supportDataMaintainView.loadData}" onPostback="false"/>
+            <f:viewAction action="#{serviceMaintainView.loadData}" onPostback="false"/>
         </f:metadata>
     </ui:define>
     <ui:define name="CrumbNavigation">服务列表</ui:define>
@@ -24,7 +24,7 @@
         <!--</ui:repeat>-->
         <!--</o:cache>-->
 
-        <ui:repeat value="#{supportDataMaintainView.serviceCategoryList}" var="category">
+        <ui:repeat value="#{serviceMaintainView.serviceCategoryList}" var="category">
             <p:panel header="#{category.categoryName}">
                 <ui:repeat value="#{category.serviceItemList}" var="service">
                     <h:link outcome="/ui/service_provider/sp_list.xhtml?t=#{category.categoryCode}&amp;code=#{service.serviceCode}" value="#{service.serviceName}" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />

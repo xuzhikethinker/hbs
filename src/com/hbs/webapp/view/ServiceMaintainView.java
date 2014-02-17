@@ -1,18 +1,16 @@
 package com.hbs.webapp.view;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.hbs.domain.service.ServiceCategory;
+import com.hbs.domain.service.ServiceItem;
+import org.apache.log4j.Logger;
+import org.primefaces.event.RowEditEvent;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
-import org.apache.log4j.Logger;
-import org.primefaces.event.RowEditEvent;
-
-import com.hbs.domain.service.ServiceCategory;
-import com.hbs.domain.service.ServiceItem;
+import java.util.ArrayList;
+import java.util.List;
 
 @ManagedBean(name = "serviceMaintainView")
 @ViewScoped
@@ -53,7 +51,7 @@ public class ServiceMaintainView extends BaseView {
   }
 
   public void loadServiceItemListFromCategoryCode() {
-    logger.info("SupportDataMaintainView.loadServiceItemListFromCategoryCode");
+    logger.info("ServiceMaintainView.loadServiceItemListFromCategoryCode");
     serviceItemList = new ArrayList<ServiceItem>();
     for (ServiceCategory category : this.serviceCategoryList) {
       if (category.getId().toString().equalsIgnoreCase(this.getSelectedServiceCategoryCode())) {
@@ -64,7 +62,7 @@ public class ServiceMaintainView extends BaseView {
   }
 
   public void editServiceCategory(RowEditEvent event) {
-    logger.info("SupportDataMaintainView.editServiceCategory");
+    logger.info("ServiceMaintainView.editServiceCategory");
     ServiceCategory category = (ServiceCategory) event.getObject();
     FacesMessage msg = new FacesMessage("更新产品类别", category.getCategoryName() + " 产品类别成功更新");
     supportDataService.saveServiceCategory(category);
@@ -72,7 +70,7 @@ public class ServiceMaintainView extends BaseView {
   }
 
   public void editServiceItem(RowEditEvent event) {
-    logger.info("SupportDataMaintainView.editServiceItem");
+    logger.info("ServiceMaintainView.editServiceItem");
     ServiceItem serviceItem = (ServiceItem) event.getObject();
     ServiceCategory category = serviceItem.getServiceCategory();
     FacesMessage msg = new FacesMessage("更新产品单元", category.getCategoryName() + " 产品单元成功更新");

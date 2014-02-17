@@ -7,7 +7,7 @@
                 template="/WEB-INF/template/admin/admin_layout.xhtml">
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewAction action="#{supportDataMaintainView.loadData}" onPostback="false"/>
+            <f:viewAction action="#{serviceMaintainView.loadData}" onPostback="false"/>
         </f:metadata>
     </ui:define>
     <ui:define name="MaintainFunctionTitle">服务项维护</ui:define>
@@ -15,11 +15,11 @@
         <p:tabView id="serviceMaintainTabView">
             <p:tab title="服务类别" id="serviceCategoryMaintain">
                 <h:form prependId="false" id="categoryForm">
-                <p:dataTable id="categoryList" value="#{supportDataMaintainView.serviceCategoryList}" var="category"
+                <p:dataTable id="categoryList" value="#{serviceMaintainView.serviceCategoryList}" var="category"
                              paginator="true" rows="10"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                              editable="true">
-                    <p:ajax event="rowEdit" listener="#{supportDataMaintainView.editServiceCategory}"/>
+                    <p:ajax event="rowEdit" listener="#{serviceMaintainView.editServiceCategory}"/>
                     <p:columnGroup type="header">
                         <p:row>
                             <p:column headerText="类别名称" styleClass="table_header"/>
@@ -90,21 +90,21 @@
                 <h:panelGrid id="searchService" columns="2">
                     <h:outputLabel for="serviceCategoryOneMenu" value="服务类别:"/>
                     <p:selectOneMenu id="serviceCategoryOneMenu"
-                                     value="#{supportDataMaintainView.selectedServiceCategoryCode}"
+                                     value="#{serviceMaintainView.selectedServiceCategoryCode}"
                                      style="width: 120px;">
-                        <f:selectItems value="#{supportDataMaintainView.serviceCategoryList}" var="category"
+                        <f:selectItems value="#{serviceMaintainView.serviceCategoryList}" var="category"
                                        itemLabel="#{category.categoryName}" itemValue="#{category.id}"/>
-                        <p:ajax update="serviceItemList" listener="#{supportDataMaintainView.loadServiceItemListFromCategoryCode}"
+                        <p:ajax update="serviceItemList" listener="#{serviceMaintainView.loadServiceItemListFromCategoryCode}"
                                 process="searchService"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
                 <br/>
 
-                    <p:dataTable id="serviceItemList" value="#{supportDataMaintainView.serviceItemList}" var="serviceItem"
+                    <p:dataTable id="serviceItemList" value="#{serviceMaintainView.serviceItemList}" var="serviceItem"
                                  paginator="true" rows="10"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                                  editable="true">
-                        <p:ajax event="rowEdit" listener="#{supportDataMaintainView.editServiceItem}"/>
+                        <p:ajax event="rowEdit" listener="#{serviceMaintainView.editServiceItem}"/>
                         <p:columnGroup type="header">
                             <p:row>
                                 <p:column headerText="服务项名称" styleClass="table_header"/>

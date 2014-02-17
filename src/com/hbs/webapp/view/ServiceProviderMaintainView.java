@@ -2,7 +2,6 @@ package com.hbs.webapp.view;
 
 import com.hbs.domain.service.provider.ServiceProvider;
 import com.hbs.domain.support.Province;
-import com.hbs.webapp.view.admin.SupportDataMaintainView;
 import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @ManagedBean(name="serviceProviderMaintainView")
 @ViewScoped
-public class ServiceProviderMaintainView extends SupportDataMaintainView {
+public class ServiceProviderMaintainView extends LocationMaintainView {
     private static Logger logger = Logger.getLogger(ServiceProviderMaintainView.class);
   private List<ServiceProvider> ServiceProviderList = new ArrayList<ServiceProvider>();
   private ServiceProvider serviceProvider = new ServiceProvider();//用于创建或更新SP

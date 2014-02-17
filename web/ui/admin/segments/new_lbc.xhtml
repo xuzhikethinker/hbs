@@ -8,41 +8,41 @@
         <h:panelGrid columns="2" id="lbcEditSection">
                 <h:outputLabel for="lbcProvinceMenuList_new" value="省份:"/>
                 <p:selectOneMenu id="lbcProvinceMenuList_new"
-                                 value="#{supportDataMaintainView.lbcSearchCriteria.provinceCode}"
+                                 value="#{locationMaintainView.lbcSearchCriteria.provinceCode}"
                                  style="width: 120px;">
-                    <f:selectItems value="#{supportDataMaintainView.provinceList}" var="province"
+                    <f:selectItems value="#{locationMaintainView.provinceList}" var="province"
                                    itemLabel="#{province.provinceName}" itemValue="#{province.provinceCode}"/>
-                    <p:ajax update="lbcCityMenuList_new lbcDistinctList_new" listener="#{supportDataMaintainView.loadCityListFromProvinceCode}"/>
+                    <p:ajax update="lbcCityMenuList_new lbcDistinctList_new" listener="#{locationMaintainView.loadCityListFromProvinceCode}"/>
                 </p:selectOneMenu>
 
                 <h:outputLabel for="lbcCityMenuList_new" value="城市:"/>
-                <p:selectOneMenu id="lbcCityMenuList_new" value="#{supportDataMaintainView.lbcSearchCriteria.cityCode}">
+                <p:selectOneMenu id="lbcCityMenuList_new" value="#{locationMaintainView.lbcSearchCriteria.cityCode}">
                     <f:selectItem itemLabel="选择城市" itemValue="" />
-                    <f:selectItems value="#{supportDataMaintainView.cityList}" var="city"
+                    <f:selectItems value="#{locationMaintainView.cityList}" var="city"
                                    itemLabel="#{city.cityName}" itemValue="#{city.cityCode}"/>
-                    <p:ajax update="lbcDistinctList_new" listener="#{supportDataMaintainView.loadDistrictListFromCityCode}"/>
+                    <p:ajax update="lbcDistinctList_new" listener="#{locationMaintainView.loadDistrictListFromCityCode}"/>
                 </p:selectOneMenu>
 
                 <h:outputLabel for="lbcDistinctList_new" value="区:"/>
-                <p:selectOneMenu id="lbcDistinctList_new" value="#{supportDataMaintainView.lbcSearchCriteria.districtCode}">
+                <p:selectOneMenu id="lbcDistinctList_new" value="#{locationMaintainView.lbcSearchCriteria.districtCode}">
                     <f:selectItem itemLabel="选择区" itemValue="" />
-                    <f:selectItems value="#{supportDataMaintainView.districtList}" var="district"
+                    <f:selectItems value="#{locationMaintainView.districtList}" var="district"
                                    itemLabel="#{district.districtName}" itemValue="#{district.districtCode}"/>
                 </p:selectOneMenu>
 
             <h:outputLabel value="生活、商业圈名 :"></h:outputLabel>
             <p:inputText required="true"
-                         value="#{supportDataMaintainView.lbcDTO.lbcName}"/>
+                         value="#{locationMaintainView.lbcDTO.lbcName}"/>
 
             <h:outputLabel value="区（县）代号 :"></h:outputLabel>
             <p:inputText required="true"
-                         value="#{supportDataMaintainView.lbcDTO.lbcCode}"/>
+                         value="#{locationMaintainView.lbcDTO.lbcCode}"/>
 
             <h:outputLabel value="说明 :"></h:outputLabel>
-            <p:inputTextarea rows="6" cols="33" value="#{supportDataMaintainView.lbcDTO.description}"/>
+            <p:inputTextarea rows="6" cols="33" value="#{locationMaintainView.lbcDTO.description}"/>
         </h:panelGrid>
         <p:commandButton id="btn_saveLBC" value="保存" validateClient="true" ajax="true" update="lbcDistinctTable newLBC"
-                         actionListener="#{supportDataMaintainView.addNewLifeBusinessCircle}">
+                         actionListener="#{locationMaintainView.addNewLifeBusinessCircle}">
         </p:commandButton>
     </p:panel>
 </ui:composition>

@@ -45,6 +45,7 @@
             <set> 
                 <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="default" />
                 <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="provinces" />
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="activeProvinces" />
                 <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="services" />
                 <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="provinceMap" />
             </set> 

@@ -8,7 +8,7 @@
                 template="/WEB-INF/template/admin/admin_layout.xhtml">
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewAction action="#{supportDataMaintainView.loadData}" onPostback="false"/>
+            <f:viewAction action="#{locationMaintainView.loadData}" onPostback="false"/>
         </f:metadata>
     </ui:define>
     <ui:define name="CenterContent">
@@ -18,23 +18,23 @@
                     <h:panelGrid id="searchCity" columns="2">
                         <h:outputLabel for="provinceOneMenu" value="省份:"/>
                         <p:selectOneMenu id="provinceOneMenu"
-                                         value="#{supportDataMaintainView.lbcSearchCriteria.provinceCode}"
+                                         value="#{locationMaintainView.lbcSearchCriteria.provinceCode}"
                                          style="width: 120px;">
-                            <f:selectItems value="#{supportDataMaintainView.provinceList}" var="province"
+                            <f:selectItems value="#{locationMaintainView.provinceList}" var="province"
                                            itemLabel="#{province.provinceName}" itemValue="#{province.provinceCode}"/>
-                            <p:ajax update="cityList" listener="#{supportDataMaintainView.loadCityListFromProvinceCode}"
+                            <p:ajax update="cityList" listener="#{locationMaintainView.loadCityListFromProvinceCode}"
                                     process="searchCity"/>
                         </p:selectOneMenu>
                     </h:panelGrid>
                     <br/>
 
-                    <p:dataTable id="cityList" value="#{supportDataMaintainView.cityList}" var="city"
+                    <p:dataTable id="cityList" value="#{locationMaintainView.cityList}" var="city"
                                  paginator="true" rows="10"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                                  editable="true">
                         <p:columnGroup type="header">
                             <p:row>
-                                <p:column headerText="省份-#{fn:length(supportDataMaintainView.cityList)}"
+                                <p:column headerText="省份-#{fn:length(locationMaintainView.cityList)}"
                                           styleClass="table_header"/>
                                 <p:column headerText="城市" styleClass="table_header"/>
                                 <p:column headerText="城市代码" styleClass="table_header"/>
@@ -67,7 +67,7 @@
                     <h:panelGrid id="searchDistrict" columns="4">
                         <ui:include src="segments/city_selector.xhtml">
                             <ui:param name="componentID" value="listCityTable"></ui:param>
-                            <ui:param name="view" value="#{supportDataMaintainView}"></ui:param>
+                            <ui:param name="view" value="#{locationMaintainView}"></ui:param>
                             <ui:param name="refreshTable" value="true"></ui:param>
                         </ui:include>
                         <!--<h:outputLabel for="provinceMenuList" value="省份:"/>
@@ -89,7 +89,7 @@
                     </h:panelGrid>
                     <br/>
 
-                    <p:dataTable id="distinctList" value="#{supportDataMaintainView.districtList}" var="district"
+                    <p:dataTable id="distinctList" value="#{locationMaintainView.districtList}" var="district"
                                  paginator="true" rows="10"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                                  editable="true">
@@ -122,32 +122,32 @@
                     <h:panelGrid id="searchLBC" columns="6">
                         <h:outputLabel for="lbcProvinceMenuList" value="省份:"/>
                         <p:selectOneMenu id="lbcProvinceMenuList"
-                                         value="#{supportDataMaintainView.lbcSearchCriteria.provinceCode}"
+                                         value="#{locationMaintainView.lbcSearchCriteria.provinceCode}"
                                          style="width: 120px;">
-                            <f:selectItems value="#{supportDataMaintainView.provinceList}" var="province"
+                            <f:selectItems value="#{locationMaintainView.provinceList}" var="province"
                                            itemLabel="#{province.provinceName}" itemValue="#{province.provinceCode}"/>
-                            <p:ajax update="lbcCityMenuList lbcDistinctList lbcDistinctTable" listener="#{supportDataMaintainView.loadCityListFromProvinceCode}"/>
+                            <p:ajax update="lbcCityMenuList lbcDistinctList lbcDistinctTable" listener="#{locationMaintainView.loadCityListFromProvinceCode}"/>
                         </p:selectOneMenu>
 
                         <h:outputLabel for="lbcCityMenuList" value="城市:"/>
-                        <p:selectOneMenu id="lbcCityMenuList" value="#{supportDataMaintainView.lbcSearchCriteria.cityCode}">
+                        <p:selectOneMenu id="lbcCityMenuList" value="#{locationMaintainView.lbcSearchCriteria.cityCode}">
                             <f:selectItem itemLabel="选择城市" itemValue="" />
-                            <f:selectItems value="#{supportDataMaintainView.cityList}" var="city"
+                            <f:selectItems value="#{locationMaintainView.cityList}" var="city"
                                            itemLabel="#{city.cityName}" itemValue="#{city.cityCode}"/>
-                            <p:ajax update="lbcDistinctList lbcDistinctTable" listener="#{supportDataMaintainView.loadDistrictListFromCityCode}"/>
+                            <p:ajax update="lbcDistinctList lbcDistinctTable" listener="#{locationMaintainView.loadDistrictListFromCityCode}"/>
                         </p:selectOneMenu>
 
                         <h:outputLabel for="lbcDistinctList" value="区:"/>
-                        <p:selectOneMenu id="lbcDistinctList" value="#{supportDataMaintainView.lbcSearchCriteria.districtCode}">
+                        <p:selectOneMenu id="lbcDistinctList" value="#{locationMaintainView.lbcSearchCriteria.districtCode}">
                             <f:selectItem itemLabel="选择城市" itemValue="" />
-                            <f:selectItems value="#{supportDataMaintainView.districtList}" var="district"
+                            <f:selectItems value="#{locationMaintainView.districtList}" var="district"
                                            itemLabel="#{district.districtName}" itemValue="#{district.districtCode}"/>
-                            <p:ajax update="lbcDistinctTable" listener="#{supportDataMaintainView.loadLBCFromDistrictCode}"/>
+                            <p:ajax update="lbcDistinctTable" listener="#{locationMaintainView.loadLBCFromDistrictCode}"/>
                         </p:selectOneMenu>
                     </h:panelGrid>
                     <br/>
 
-                    <p:dataTable id="lbcDistinctTable" value="#{supportDataMaintainView.lifeBusinessCircleList}" var="lbc"
+                    <p:dataTable id="lbcDistinctTable" value="#{locationMaintainView.lifeBusinessCircleList}" var="lbc"
                                  paginator="true" rows="10"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                                  editable="true">

@@ -33,6 +33,7 @@ public class SupportDataServiceImpl extends AbstractBaseService implements Suppo
         return supportDataRepository.findAll();
     }
 
+    @Cacheable("activeProvinces")
     public List<Province> findProvinceWithLBCList() {
         List<Province> activeProviceList = new ArrayList<Province>();
         for (Province province : this.findAllProvince()) {

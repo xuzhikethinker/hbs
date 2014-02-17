@@ -7,22 +7,22 @@
              closeSpeed="500" widgetVar="CategoryPanel" collapsed="true" >
         <h:panelGrid columns="2" id="cityEditSection">
             <h:outputLabel value="省份 : *"></h:outputLabel>
-            <p:selectOneMenu value="#{supportDataMaintainView.cityDTO.proviceCode}" style="width: 120px;">
-                <f:selectItems value="#{supportDataMaintainView.provinceList}" var="province"
+            <p:selectOneMenu value="#{locationMaintainView.cityDTO.proviceCode}" style="width: 120px;">
+                <f:selectItems value="#{locationMaintainView.provinceList}" var="province"
                                itemLabel="#{province.provinceName}" itemValue="#{province.provinceCode}"/>
             </p:selectOneMenu>
 
             <h:outputLabel value="城市名 :"></h:outputLabel>
             <p:inputText required="true"
-                         value="#{supportDataMaintainView.cityDTO.cityName}"/>
+                         value="#{locationMaintainView.cityDTO.cityName}"/>
 
             <h:outputLabel value="城市代号（邮编） :"></h:outputLabel>
             <p:inputText required="true"
-                         value="#{supportDataMaintainView.cityDTO.cityCode}"/>
+                         value="#{locationMaintainView.cityDTO.cityCode}"/>
 
         </h:panelGrid>
         <p:commandButton id="btn_edit" value="保存" validateClient="true" ajax="true" update="newCity"
-                         actionListener="#{supportDataMaintainView.addNewCity}">
+                         actionListener="#{locationMaintainView.addNewCity}">
         </p:commandButton>
     </p:panel>
 
