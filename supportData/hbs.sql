@@ -122,11 +122,11 @@ CREATE TABLE `hbs_contact_method` (
   `VALUE` varchar(100) NOT NULL,
   `DESCRIPTION` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `hbs_contact_method` */
 
-insert  into `hbs_contact_method`(`ID`,`DISCRIMINATOR`,`USER_ID`,`TYPE`,`VALUE`,`DESCRIPTION`) values (1,'C',7,'QQ','111111111',NULL),(2,'C',7,'Email','abc@163.com',NULL);
+insert  into `hbs_contact_method`(`ID`,`DISCRIMINATOR`,`USER_ID`,`TYPE`,`VALUE`,`DESCRIPTION`) values (1,'C',7,'QQ','111111111',NULL),(2,'C',7,'Email','abc@163.com',NULL),(3,'P',5,'QQ','2222222',NULL),(4,'P',5,'Email','abc@qq.com',NULL);
 
 /*Table structure for table `hbs_district` */
 
@@ -309,11 +309,11 @@ CREATE TABLE `hbs_service_provider` (
   `LAST_MODIFIED_BY` varchar(20) DEFAULT NULL,
   `LAST_MODIFIED_DATE` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `hbs_service_provider` */
 
-insert  into `hbs_service_provider`(`ID`,`PROVIDER_NAME`,`PROVIDER_CODE`,`LOGIN_ACCOUNT`,`LOGIN_PASSWORD`,`PROVIDER_DESCRIPTION`,`ACTIVE`,`SERVICE_KEYWORD`,`PLACE_KEYWORD`,`CITY_CODE`,`DISTRICT_CODE`,`LBC_CODE`,`ZIP_CODE`,`ADDRESS_LINE`,`CONTRACT_NAME`,`CONTRACT_PHONE`,`EMAIL_ADDR`,`QQ_NUMBER`,`CREATED_BY`,`CREATED_DATE`,`LAST_MODIFIED_BY`,`LAST_MODIFIED_DATE`) values (1,'唐家康美来药店','kangMeiLai','account','pwd',NULL,1,NULL,'tangjia kangmeilai yaodian','0753',NULL,'075301001','514245',NULL,'contactPerson','phone','email','qq','system','2013-10-08 22:35:48',NULL,NULL),(3,'唐家康美来药店5','kangMeiLai5','account','pwd',NULL,1,NULL,'tangjia kangmeilai yaodian','0753',NULL,'075301001','514245',NULL,'contactPerson','phone','email','qq','system','2013-10-08 22:40:51',NULL,NULL),(4,'唐家康美来药店57','kangMeiLai57','account','pwd',NULL,1,NULL,'tangjia kangmeilai yaodian','0753',NULL,'075301001','514245',NULL,'contactPerson','phone','email','qq','system','2013-10-08 22:44:17',NULL,NULL);
+insert  into `hbs_service_provider`(`ID`,`PROVIDER_NAME`,`PROVIDER_CODE`,`LOGIN_ACCOUNT`,`LOGIN_PASSWORD`,`PROVIDER_DESCRIPTION`,`ACTIVE`,`SERVICE_KEYWORD`,`PLACE_KEYWORD`,`CITY_CODE`,`DISTRICT_CODE`,`LBC_CODE`,`ZIP_CODE`,`ADDRESS_LINE`,`CONTRACT_NAME`,`CONTRACT_PHONE`,`EMAIL_ADDR`,`QQ_NUMBER`,`CREATED_BY`,`CREATED_DATE`,`LAST_MODIFIED_BY`,`LAST_MODIFIED_DATE`) values (1,'唐家康美来药店','kangMeiLai','account','pwd',NULL,1,NULL,'tangjia kangmeilai yaodian','0753',NULL,'075301001','514245',NULL,'contactPerson','phone','email','qq','system','2013-10-08 22:35:48',NULL,NULL),(3,'唐家康美来药店5','kangMeiLai5','account','pwd',NULL,1,NULL,'tangjia kangmeilai yaodian','0753',NULL,'075301001','514245',NULL,'contactPerson','phone','email','qq','system','2013-10-08 22:40:51',NULL,NULL),(4,'唐家康美来药店57','kangMeiLai57','account','pwd',NULL,1,NULL,'tangjia kangmeilai yaodian','0753',NULL,'075301001','514245',NULL,'contactPerson','phone','email','qq','system','2013-10-08 22:44:17',NULL,NULL),(5,'name','code','account','pwd',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-02-18 23:48:52',NULL,NULL);
 
 /*Table structure for table `hbs_sp_product_pic` */
 
