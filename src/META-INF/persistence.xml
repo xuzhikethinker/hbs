@@ -16,7 +16,7 @@
         <class>com.hbs.domain.support.District</class>
         <class>com.hbs.domain.support.LifeBusinessCircle</class>
         <class>com.hbs.domain.support.LifeBusinessCircleAssociation</class>
-        <class>com.hbs.domain.service.consumer.UserInfo</class>
+        <class>com.hbs.domain.service.consumer.Consumer</class>
         <class>com.hbs.domain.service.consumer.ServiceOrder</class>
         <class>com.hbs.domain.service.consumer.ServiceFavorite</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>        

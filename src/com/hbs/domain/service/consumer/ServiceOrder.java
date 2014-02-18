@@ -1,17 +1,11 @@
 package com.hbs.domain.service.consumer;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import com.hbs.domain.common.PersistenceDomain;
 
+import javax.persistence.*;
+
 @Entity
-@Table(name = "HBS_USER_SERVICE_ORDER")
+@Table(name = "HBS_CONSUMER_SERVICE_ORDER")
 public class ServiceOrder extends PersistenceDomain {
 
     private static final long serialVersionUID = 1L;
@@ -38,7 +32,7 @@ public class ServiceOrder extends PersistenceDomain {
     @ManyToOne(optional = false)
     // 可选属性optional=false,表示company不能为空
     @JoinColumn(name = "USER_ID")
-    private UserInfo orderOwner;
+    private Consumer orderOwner;
 
     public ServiceOrder() {
     }
@@ -83,11 +77,11 @@ public class ServiceOrder extends PersistenceDomain {
         this.status = status;
     }
 
-    public UserInfo getOrderOwner() {
+    public Consumer getOrderOwner() {
         return orderOwner;
     }
 
-    public void setOrderOwner(UserInfo orderOwner) {
+    public void setOrderOwner(Consumer orderOwner) {
         this.orderOwner = orderOwner;
     }
 

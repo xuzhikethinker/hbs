@@ -1,16 +1,9 @@
 package com.hbs.domain.service.consumer;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import com.hbs.domain.common.PersistenceDomain;
 import com.hbs.domain.service.provider.ServiceProvider;
+
+import javax.persistence.*;
 
 /**
  * 用户的服务收藏夹，主要收藏服务提供商，但是需要根据服务代码来分类。用户在服务提供商上点击收藏，则系统需要自动对这些提供商进行分类。
@@ -20,7 +13,7 @@ import com.hbs.domain.service.provider.ServiceProvider;
  *
  */
 @Entity
-@Table(name = "HBS_USER_SERVICE_FAVORITE")
+@Table(name = "HBS_CONSUMER_SERVICE_FAVORITE")
 public class ServiceFavorite extends PersistenceDomain {
 
     private static final long serialVersionUID = 1L;
@@ -38,7 +31,7 @@ public class ServiceFavorite extends PersistenceDomain {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     // 可选属性optional=false,表示company不能为空
     @JoinColumn(name = "USER_ID")
-    private UserInfo favoriteOwner;
+    private Consumer favoriteOwner;
 
     public ServiceFavorite() {
     }
@@ -59,11 +52,11 @@ public class ServiceFavorite extends PersistenceDomain {
         this.description = description;
     }
 
-    public UserInfo getFavoriteOwner() {
+    public Consumer getFavoriteOwner() {
         return favoriteOwner;
     }
 
-    public void setFavoriteOwner(UserInfo favoriteOwner) {
+    public void setFavoriteOwner(Consumer favoriteOwner) {
         this.favoriteOwner = favoriteOwner;
     }
 

@@ -1,34 +1,22 @@
 package com.hbs.domain.service.provider;
 
+import com.hbs.domain.common.News;
+import com.hbs.domain.service.AbstractUserInfo;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import com.hbs.domain.common.Address;
-import com.hbs.domain.common.ContactInfo;
-import com.hbs.domain.common.News;
-import com.hbs.domain.common.PersistenceDomain;
-
 /**
  * 服务提供商
  *
  * @author develop
- *
  */
 @Entity
 @Table(name = "HBS_SERVICE_PROVIDER")
-public class ServiceProvider extends PersistenceDomain {
+public class ServiceProvider extends AbstractUserInfo {
 
     private static final long serialVersionUID = 1L;
     @Basic
@@ -40,20 +28,6 @@ public class ServiceProvider extends PersistenceDomain {
     private String providerCode;// 提供商的唯一代码，邮政编码+区号+其他， 系统提供，采用一种比较容易的方法来定位服务
 
     @Basic
-    @Column(name = "LOGIN_ACCOUNT", nullable = false)
-    private String providerLoginAccount;
-
-    @Basic
-    @Column(name = "LOGIN_PASSWORD", nullable = false)
-    private String providerLoginPassword;
-
-    @Embedded
-    private Address address;  //定义了服务提供商所在的商业圈
-
-    @Embedded
-    private ContactInfo contactInfo;
-
-    @Basic
     @Column(name = "PROVIDER_DESCRIPTION", nullable = true)
     private String description;
 
@@ -63,6 +37,9 @@ public class ServiceProvider extends PersistenceDomain {
 
     @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<AvailableService> servierList = new ArrayList<AvailableService>();// 可提供的服务，大部分是一项
+
+    @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<ProviderContactMethod> contactMethodList = new ArrayList<ProviderContactMethod>();// 可提供的服务，大部分是一项
 
     @Basic
     @Column(name = "SERVICE_KEYWORD", nullable = true)
@@ -95,38 +72,6 @@ public class ServiceProvider extends PersistenceDomain {
 
     public void setProviderCode(String providerCode) {
         this.providerCode = providerCode;
-    }
-
-    public String getProviderLoginAccount() {
-        return providerLoginAccount;
-    }
-
-    public void setProviderLoginAccount(String providerLoginAccount) {
-        this.providerLoginAccount = providerLoginAccount;
-    }
-
-    public String getProviderLoginPassword() {
-        return providerLoginPassword;
-    }
-
-    public void setProviderLoginPassword(String providerLoginPassword) {
-        this.providerLoginPassword = providerLoginPassword;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public ContactInfo getContactInfo() {
-        return contactInfo;
-    }
-
-    public void setContactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
     }
 
     public String getDescription() {
@@ -185,4 +130,11 @@ public class ServiceProvider extends PersistenceDomain {
         this.pictures = pictures;
     }
 
+    public List<ProviderContactMethod> getContactMethodList() {
+        return contactMethodList;
+    }
+
+    public void setContactMethodList(List<ProviderContactMethod> contactMethodList) {
+        this.contactMethodList = contactMethodList;
+    }
 }

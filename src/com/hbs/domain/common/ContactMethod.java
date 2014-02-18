@@ -1,18 +1,24 @@
 package com.hbs.domain.common;
 
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by Administrator on 14-2-17.
  * 联系方式，主要定义QQ/MSN/Email/微信/微博/飞信/阿里旺旺等等各种方式
  */
 @Entity
-public class ContactMethod extends PersistenceDomain {
+@DiscriminatorColumn(name="DISCRIMINATOR",discriminatorType= DiscriminatorType.STRING)
+@Table(name = "HBS_CONTACT_METHOD")
+public abstract class ContactMethod extends AbstractPersistable<Long> {
     private String type;
     private String value;
     private String description;
 
-    private ContactInfo contactInfo;
     public String getType() {
         return type;
     }
@@ -37,11 +43,4 @@ public class ContactMethod extends PersistenceDomain {
         this.description = description;
     }
 
-    public ContactInfo getContactInfo() {
-        return contactInfo;
-    }
-
-    public void setContactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
-    }
 }
