@@ -2,6 +2,8 @@ package com.hbs.repository;
 
 import com.hbs.domain.service.provider.ProviderContactMethod;
 import com.hbs.domain.service.provider.ServiceProvider;
+import com.hbs.repository.ServiceProviderRepository;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

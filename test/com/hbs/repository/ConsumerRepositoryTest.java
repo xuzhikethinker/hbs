@@ -2,6 +2,8 @@ package com.hbs.repository;
 
 import com.hbs.domain.service.consumer.Consumer;
 import com.hbs.domain.service.consumer.ConsumerContactMethod;
+import com.hbs.repository.ConsumerRepository;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
