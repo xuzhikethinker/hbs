@@ -7,3 +7,7 @@ build/
 .classpath
 .project
 .settings/
+
+src/jdbc.properties
+*jdbc.properties
+src/jdbc.properties
