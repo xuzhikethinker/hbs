@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("C")
 public class ConsumerContactMethod extends ContactMethod {
+  private static final long serialVersionUID = 1L;
     @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, optional = false)
     @JoinColumn(name = "USER_ID")
     private Consumer consumer;

@@ -36,11 +36,11 @@ public class Consumer extends AbstractUserInfo {
     //@JoinColumn(name = "USER_ID")
     private List<ServiceOrder> serviceOrderList = new ArrayList<ServiceOrder>();
 
-    @OneToMany(mappedBy = "favoriteOwner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<ServiceFavorite> myFavoriteServices = new ArrayList<ServiceFavorite>();
+    @OneToMany(mappedBy = "consumer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<FavoriteServiceGroup> myFavoriteGroups = new ArrayList<FavoriteServiceGroup>();
 
     @OneToMany(mappedBy = "consumer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<ConsumerContactMethod> contactMethodList = new ArrayList<ConsumerContactMethod>();// 可提供的服务，大部分是一项
+    private List<ConsumerContactMethod> contactMethodList = new ArrayList<ConsumerContactMethod>();
 
     public Consumer() {
     }
@@ -77,12 +77,12 @@ public class Consumer extends AbstractUserInfo {
         this.serviceOrderList = serviceOrderList;
     }
 
-    public List<ServiceFavorite> getMyFavoriteServices() {
-        return myFavoriteServices;
+    public List<FavoriteServiceGroup> getMyFavoriteGroups() {
+      return myFavoriteGroups;
     }
 
-    public void setMyFavoriteServices(List<ServiceFavorite> myFavoriteServices) {
-        this.myFavoriteServices = myFavoriteServices;
+    public void setMyFavoriteGroups(List<FavoriteServiceGroup> myFavoriteGroups) {
+      this.myFavoriteGroups = myFavoriteGroups;
     }
 
     public List<ConsumerContactMethod> getContactMethodList() {

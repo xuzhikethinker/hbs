@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 服务提供商
+ * 服务提供商，它应该有一个主要类别。
  *
  * @author develop
  */
@@ -36,7 +36,7 @@ public class ServiceProvider extends AbstractUserInfo {
     private boolean active = true;// 是否激活
 
     @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<AvailableService> servierList = new ArrayList<AvailableService>();// 可提供的服务，大部分是一项
+    private List<AvailableService> servierList = new ArrayList<AvailableService>();// 可提供的其他服务，大部分是一项
 
     @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ProviderContactMethod> contactMethodList = new ArrayList<ProviderContactMethod>();// 可提供的服务，大部分是一项

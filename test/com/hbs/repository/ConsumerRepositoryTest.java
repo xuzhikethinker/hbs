@@ -2,6 +2,8 @@ package com.hbs.repository;
 
 import com.hbs.domain.service.consumer.Consumer;
 import com.hbs.domain.service.consumer.ConsumerContactMethod;
+import com.hbs.domain.service.consumer.FavoriteServiceGroup;
+import com.hbs.domain.service.consumer.FavoriteServiceItem;
 import com.hbs.repository.ConsumerRepository;
 
 import org.junit.Test;
@@ -41,7 +43,28 @@ public class ConsumerRepositoryTest {
         consumerContactMethods.add(method2);
 
         consumer.setContactMethodList(consumerContactMethods);
-
+        
+        List<FavoriteServiceGroup> myFavoriteGroups = new ArrayList<FavoriteServiceGroup>();
+        FavoriteServiceGroup group1 = new FavoriteServiceGroup();
+        group1.setConsumer(consumer);
+        group1.setGroupName("group name");
+        
+        List<FavoriteServiceItem> favoriteServiceItemList = new ArrayList<FavoriteServiceItem>();
+        FavoriteServiceItem item1 = new FavoriteServiceItem();
+        item1.setFavoriteServiceGroup(group1);
+        item1.setServiceProviderCode("AAAAA");
+        favoriteServiceItemList.add(item1);
+        
+        FavoriteServiceItem item2 = new FavoriteServiceItem();
+        item2.setFavoriteServiceGroup(group1);
+        item2.setServiceProviderCode("BBBBB");
+        favoriteServiceItemList.add(item2);
+        
+        group1.setFavoriteServiceItemList(favoriteServiceItemList);
+        myFavoriteGroups.add(group1);
+        
+        consumer.setMyFavoriteGroups(myFavoriteGroups);
+        
         consumerRepository.saveAndFlush(consumer);
     }
 
