@@ -1,9 +1,8 @@
 package com.hbs.repository;
 
+import com.hbs.domain.service.provider.AvailableService;
 import com.hbs.domain.service.provider.ProviderContactMethod;
 import com.hbs.domain.service.provider.ServiceProvider;
-import com.hbs.repository.ServiceProviderRepository;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,9 @@ public class ServiceProviderRepositoryTest {
         serviceProvider.setLoginPassword("pwd");
         serviceProvider.setProviderName("name");
         serviceProvider.setProviderCode("code");
+        serviceProvider.setServiceCategoryCode("category");
+        serviceProvider.setServiceItemCode("item");
+        serviceProvider.setServiceItemRemark("remarks");
 
         List<ProviderContactMethod> providerContactMethods = new ArrayList<ProviderContactMethod>();
         ProviderContactMethod method1 = new ProviderContactMethod();
@@ -44,6 +46,20 @@ public class ServiceProviderRepositoryTest {
         providerContactMethods.add(method2);
 
         serviceProvider.setContactMethodList(providerContactMethods);
+
+        List<AvailableService> servierList = new ArrayList<AvailableService>();
+        AvailableService service1 = new AvailableService();
+        service1.setServiceCode("scode1");
+        service1.setServiceProvider(serviceProvider);
+
+        AvailableService service2 = new AvailableService();
+        service2.setServiceCode("scode2");
+        service2.setServiceProvider(serviceProvider);
+
+        servierList.add(service1);
+        servierList.add(service2);
+
+        serviceProvider.setServierList(servierList);
 
         serviceProviderRepository.saveAndFlush(serviceProvider);
     }

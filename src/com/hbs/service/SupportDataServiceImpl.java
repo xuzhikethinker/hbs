@@ -1,9 +1,11 @@
 package com.hbs.service;
 
+import com.hbs.domain.common.News;
 import com.hbs.domain.service.ServiceCategory;
 import com.hbs.domain.support.Province;
+import com.hbs.repository.LocationRepository;
+import com.hbs.repository.NewsRepository;
 import com.hbs.repository.ServiceInfoRepository;
-import com.hbs.repository.SupportDataRepository;
 import com.uaihebert.factory.EasyCriteriaFactory;
 import com.uaihebert.model.EasyCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +24,18 @@ public class SupportDataServiceImpl extends AbstractBaseService implements Suppo
 
 
     @Autowired
-    private SupportDataRepository supportDataRepository;
+    private LocationRepository locationRepository;
 
     @Autowired
     private ServiceInfoRepository serviceInfoRepository;
 
+    @Autowired
+    private NewsRepository newsRepository;
+
     @Override
     @Cacheable("provinces")
     public List<Province> findAllProvince() {
-        return supportDataRepository.findAll();
+        return locationRepository.findAll();
     }
 
     @Cacheable("activeProvinces")
@@ -66,12 +71,20 @@ public class SupportDataServiceImpl extends AbstractBaseService implements Suppo
 //    @CacheEvict(value="provinces",allEntries=true)setCityName
     @Caching(evict = {@CacheEvict(value = "provinces", allEntries = true), @CacheEvict(value = "provinceMap", allEntries = true)})
     public void saveProvice(Province province) {
-        supportDataRepository.saveAndFlush(province);
+        locationRepository.saveAndFlush(province);
     }
 
     @Override
     @Caching(evict = {@CacheEvict(value = "services", allEntries = true)})
     public void saveServiceCategory(ServiceCategory category) {
         serviceInfoRepository.saveAndFlush(category);
+    }
+
+    public void saveSystemNews(News news){
+        newsRepository.saveAndFlush(news);
+    }
+
+    public News findNewsById(Long id){
+        return newsRepository.findOne(id);
     }
 }

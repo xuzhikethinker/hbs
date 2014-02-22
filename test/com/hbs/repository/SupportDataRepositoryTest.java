@@ -13,11 +13,11 @@ import java.util.List;
 @ContextConfiguration("/applicationContext.xml")
 public class SupportDataRepositoryTest {
     @Autowired
-    private SupportDataRepository supportDataRepository;
+    private LocationRepository locationRepository;
 
     @Test
     public void getProvice(){
-        List<Province> provinceList = supportDataRepository.findAll();
+        List<Province> provinceList = locationRepository.findAll();
         System.out.println("province list = "+provinceList.size());
     }
 }

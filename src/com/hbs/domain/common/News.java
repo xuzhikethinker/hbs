@@ -1,13 +1,12 @@
 package com.hbs.domain.common;
 
+import javax.persistence.*;
 import java.util.Date;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
+@DiscriminatorColumn(name = "NEWS_AUTHOR", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("SYSTEM")
 @Table(name = "HBS_NEWS")
 public class News extends PersistenceDomain {
 
@@ -29,11 +28,11 @@ public class News extends PersistenceDomain {
     private Date validDateTo;
 
     @Basic
-    @Column(name = "NEWS_AUTHOR", nullable = false)
+    @Column(name = "NEWS_AUTHOR", nullable = false,insertable = false , updatable = false)
     private String author;
 
     @Basic
-    @Column(name = "NEWS_SOURCE", nullable = false)
+    @Column(name = "NEWS_SOURCE", nullable = false,insertable = false , updatable = false)
     private String source;
 
     @Basic
@@ -91,4 +90,11 @@ public class News extends PersistenceDomain {
         this.source = source;
     }
 
+    public String getNewsType() {
+        return newsType;
+    }
+
+    public void setNewsType(String newsType) {
+        this.newsType = newsType;
+    }
 }

@@ -1,14 +1,8 @@
 package com.hbs.domain.service.provider;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import com.hbs.domain.common.PersistenceDomain;
+import javax.persistence.*;
 
 /**
  * 服务提供商所提供的服务，这些服务是系统已经定义好的。系统搜索服务的时候将根据这里的服务代码来获取结果。
@@ -18,7 +12,7 @@ import com.hbs.domain.common.PersistenceDomain;
  */
 @Entity
 @Table(name = "HBS_SP_SERVICE")
-public class AvailableService extends PersistenceDomain {
+public class AvailableService extends AbstractPersistable<Long> {
 
   private static final long serialVersionUID = 1L;
   @Basic

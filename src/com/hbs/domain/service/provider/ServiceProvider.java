@@ -1,6 +1,5 @@
 package com.hbs.domain.service.provider;
 
-import com.hbs.domain.common.News;
 import com.hbs.domain.service.AbstractUserInfo;
 
 import javax.persistence.*;
@@ -28,6 +27,18 @@ public class ServiceProvider extends AbstractUserInfo {
     private String providerCode;// 提供商的唯一代码，邮政编码+区号+其他， 系统提供，采用一种比较容易的方法来定位服务
 
     @Basic
+    @Column(name = "SERVICE_CATEGORY", nullable = true)
+    private String serviceCategoryCode;//提供商所属服务类别
+
+    @Basic
+    @Column(name = "SERVICE_ITEM", nullable = true)
+    private String serviceItemCode;//提供商所属服务类
+
+    @Basic
+    @Column(name = "SERVICE_ITEM_REMARK", nullable = true)
+    private String serviceItemRemark;//有可能提供商的服务类，系统中不存在，则允许提供商额外提供自己的说明
+
+    @Basic
     @Column(name = "PROVIDER_DESCRIPTION", nullable = true)
     private String description;
 
@@ -49,8 +60,8 @@ public class ServiceProvider extends AbstractUserInfo {
     @Column(name = "PLACE_KEYWORD", nullable = true)
     private String placeKeyword;// 地点关键字
 
-    @Transient
-    private List<News> newsList = new ArrayList<News>();
+    @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<ProviderNews> newsList = new ArrayList<ProviderNews>();
 
     @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ProductPicture> pictures = new HashSet<ProductPicture>();
@@ -114,11 +125,11 @@ public class ServiceProvider extends AbstractUserInfo {
         this.placeKeyword = placeKeyword;
     }
 
-    public List<News> getNewsList() {
+    public List<ProviderNews> getNewsList() {
         return newsList;
     }
 
-    public void setNewsList(List<News> newsList) {
+    public void setNewsList(List<ProviderNews> newsList) {
         this.newsList = newsList;
     }
 
@@ -136,5 +147,29 @@ public class ServiceProvider extends AbstractUserInfo {
 
     public void setContactMethodList(List<ProviderContactMethod> contactMethodList) {
         this.contactMethodList = contactMethodList;
+    }
+
+    public String getServiceCategoryCode() {
+        return serviceCategoryCode;
+    }
+
+    public void setServiceCategoryCode(String serviceCategoryCode) {
+        this.serviceCategoryCode = serviceCategoryCode;
+    }
+
+    public String getServiceItemCode() {
+        return serviceItemCode;
+    }
+
+    public void setServiceItemCode(String serviceItemCode) {
+        this.serviceItemCode = serviceItemCode;
+    }
+
+    public String getServiceItemRemark() {
+        return serviceItemRemark;
+    }
+
+    public void setServiceItemRemark(String serviceItemRemark) {
+        this.serviceItemRemark = serviceItemRemark;
     }
 }

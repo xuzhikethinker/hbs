@@ -1,5 +1,6 @@
 package com.hbs.service;
 
+import com.hbs.domain.common.News;
 import com.hbs.domain.service.ServiceCategory;
 import com.hbs.domain.support.Province;
 
@@ -13,4 +14,7 @@ public interface SupportDataService {
     public Map<String, Province> getProvinceMap();
     public void saveProvice(Province province);
     public void saveServiceCategory(ServiceCategory category);
+    //news
+    public void saveSystemNews(News news);
+    public News findNewsById(Long id);
 }

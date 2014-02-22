@@ -1,14 +1,8 @@
 package com.hbs.domain.service.provider;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import com.hbs.domain.common.PersistenceDomain;
+import javax.persistence.*;
 
 /**
  * 服务提供商为服务上传的图片
@@ -18,7 +12,7 @@ import com.hbs.domain.common.PersistenceDomain;
  */
 @Entity
 @Table(name = "HBS_SP_PRODUCT_PIC")
-public class ProductPicture extends PersistenceDomain {
+public class ProductPicture extends AbstractPersistable<Long> {
 
     private static final long serialVersionUID = 1L;
     @Basic
