@@ -35,6 +35,39 @@ CREATE TABLE `hbs_city` (
 
 insert  into `hbs_city`(`ID`,`CITY_NAME`,`CITY_CODE`,`PROVINCE_ID`,`PROVINCE_CODE`,`CITY_KEY`,`CITY_SPELLING`) values (1,'珠海','0756',7,'GuangDong','z','zhuhai'),(2,'菏泽','123456',1,'SHD',NULL,NULL),(3,'广州','020',7,'GUD',NULL,NULL),(4,'梅州','0753',7,'GUD',NULL,NULL),(8,'11111','11111',7,'GUD',NULL,NULL),(9,'333333','555555',1,'SHD',NULL,NULL),(10,'青岛','33456',1,'SHD',NULL,NULL),(11,'55555','55555',2,'JSU',NULL,NULL),(12,'7777','8888',1,'SHD',NULL,NULL),(13,'烟台','2222',1,'SHD',NULL,NULL),(14,'7777','8888',1,'SHD',NULL,NULL),(15,'深圳','0765',7,'GUD',NULL,NULL),(16,'上海','020',6,'SHA',NULL,NULL);
 
+/*Table structure for table `hbs_consumer_favorite_service_group` */
+
+DROP TABLE IF EXISTS `hbs_consumer_favorite_service_group`;
+
+CREATE TABLE `hbs_consumer_favorite_service_group` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `GROUP_NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(200) DEFAULT NULL,
+  `DISP_SEQ` int(11) NOT NULL DEFAULT '0',
+  `USER_ID` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `hbs_consumer_favorite_service_group` */
+
+insert  into `hbs_consumer_favorite_service_group`(`ID`,`GROUP_NAME`,`DESCRIPTION`,`DISP_SEQ`,`USER_ID`) values (1,'group name',NULL,0,8);
+
+/*Table structure for table `hbs_consumer_favorite_service_item` */
+
+DROP TABLE IF EXISTS `hbs_consumer_favorite_service_item`;
+
+CREATE TABLE `hbs_consumer_favorite_service_item` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `GROUP_ID` int(11) NOT NULL,
+  `SERVICE_PROVIDER_CODE` varchar(20) NOT NULL,
+  `SERVICE_FAVORITE_DESC` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+/*Data for the table `hbs_consumer_favorite_service_item` */
+
+insert  into `hbs_consumer_favorite_service_item`(`ID`,`GROUP_ID`,`SERVICE_PROVIDER_CODE`,`SERVICE_FAVORITE_DESC`) values (7,1,'AAAAA',NULL),(8,1,'BBBBB',NULL);
+
 /*Table structure for table `hbs_consumer_info` */
 
 DROP TABLE IF EXISTS `hbs_consumer_info`;
@@ -61,31 +94,11 @@ CREATE TABLE `hbs_consumer_info` (
   `COMMUNITY_CODE` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `USER_UK1` (`LOGIN_ACCOUNT`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `hbs_consumer_info` */
 
-insert  into `hbs_consumer_info`(`ID`,`LOGIN_ACCOUNT`,`LOGIN_PASSWORD`,`USER_NAME`,`SEX`,`LBC_CODE`,`CITY_CODE`,`DISTRICT_CODE`,`ZIP_CODE`,`ADDRESS_LINE`,`CONTRACT_NAME`,`CONTRACT_PHONE`,`EMAIL_ADDR`,`QQ_NUMBER`,`CREATED_BY`,`CREATED_DATE`,`LAST_MODIFIED_BY`,`LAST_MODIFIED_DATE`,`COMMUNITY_CODE`) values (7,'xuzhike','pwd',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-02-18 23:39:32',NULL,NULL,NULL);
-
-/*Table structure for table `hbs_consumer_service_favorite` */
-
-DROP TABLE IF EXISTS `hbs_consumer_service_favorite`;
-
-CREATE TABLE `hbs_consumer_service_favorite` (
-  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `USER_ID` int(11) NOT NULL,
-  `SERVICE_PROVIDER_CODE` varchar(20) NOT NULL,
-  `SERVICE_FAVORITE_DESC` varchar(2000) DEFAULT NULL,
-  `CREATED_BY` varchar(20) DEFAULT NULL,
-  `CREATED_DATE` datetime DEFAULT NULL,
-  `LAST_MODIFIED_BY` varchar(20) DEFAULT NULL,
-  `LAST_MODIFIED_DATE` datetime DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
-/*Data for the table `hbs_consumer_service_favorite` */
-
-insert  into `hbs_consumer_service_favorite`(`ID`,`USER_ID`,`SERVICE_PROVIDER_CODE`,`SERVICE_FAVORITE_DESC`,`CREATED_BY`,`CREATED_DATE`,`LAST_MODIFIED_BY`,`LAST_MODIFIED_DATE`) values (3,2,'spCode1','desc',NULL,NULL,NULL,NULL),(4,2,'spCode2','desc',NULL,NULL,NULL,NULL),(5,3,'spCode1','desc',NULL,'2013-10-10 22:56:24',NULL,NULL),(6,3,'spCode2','desc',NULL,'2013-10-10 22:56:24',NULL,NULL);
+insert  into `hbs_consumer_info`(`ID`,`LOGIN_ACCOUNT`,`LOGIN_PASSWORD`,`USER_NAME`,`SEX`,`LBC_CODE`,`CITY_CODE`,`DISTRICT_CODE`,`ZIP_CODE`,`ADDRESS_LINE`,`CONTRACT_NAME`,`CONTRACT_PHONE`,`EMAIL_ADDR`,`QQ_NUMBER`,`CREATED_BY`,`CREATED_DATE`,`LAST_MODIFIED_BY`,`LAST_MODIFIED_DATE`,`COMMUNITY_CODE`) values (8,'xuzhike','pwd',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-02-21 22:25:29',NULL,NULL,NULL);
 
 /*Table structure for table `hbs_consumer_service_order` */
 
@@ -122,11 +135,11 @@ CREATE TABLE `hbs_contact_method` (
   `VALUE` varchar(100) NOT NULL,
   `DESCRIPTION` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `hbs_contact_method` */
 
-insert  into `hbs_contact_method`(`ID`,`DISCRIMINATOR`,`USER_ID`,`TYPE`,`VALUE`,`DESCRIPTION`) values (1,'C',7,'QQ','111111111',NULL),(2,'C',7,'Email','abc@163.com',NULL),(3,'P',5,'QQ','2222222',NULL),(4,'P',5,'Email','abc@qq.com',NULL);
+insert  into `hbs_contact_method`(`ID`,`DISCRIMINATOR`,`USER_ID`,`TYPE`,`VALUE`,`DESCRIPTION`) values (5,'C',8,'QQ','111111111',NULL),(6,'C',8,'Email','abc@163.com',NULL),(7,'P',6,'QQ','2222222',NULL),(8,'P',6,'Email','abc@qq.com',NULL);
 
 /*Table structure for table `hbs_district` */
 
@@ -205,8 +218,8 @@ CREATE TABLE `hbs_news` (
   `NEWS_CONTENTS` text NOT NULL,
   `NEWS_FROM_DATE` datetime DEFAULT NULL,
   `NEWS_TO_DATE` datetime DEFAULT NULL,
-  `NEWS_AUTHOR` varchar(20) DEFAULT NULL,
-  `NEWS_SOURCE` varchar(10) DEFAULT NULL,
+  `NEWS_AUTHOR` varchar(50) DEFAULT 'SYSTEM',
+  `NEWS_SOURCE` int(10) NOT NULL DEFAULT '0',
   `NEWS_TYPE` varchar(10) DEFAULT NULL,
   `CREATED_BY` varchar(20) DEFAULT NULL,
   `CREATED_DATE` datetime DEFAULT NULL,
@@ -293,6 +306,9 @@ CREATE TABLE `hbs_service_provider` (
   `LOGIN_PASSWORD` varchar(20) NOT NULL,
   `PROVIDER_DESCRIPTION` longtext,
   `ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  `SERVICE_CATEGORY` varchar(50) DEFAULT NULL,
+  `SERVICE_ITEM` varchar(100) DEFAULT NULL,
+  `SERVICE_ITEM_REMARK` varchar(100) DEFAULT NULL,
   `SERVICE_KEYWORD` text,
   `PLACE_KEYWORD` text,
   `CITY_CODE` varchar(50) DEFAULT NULL,
@@ -309,11 +325,11 @@ CREATE TABLE `hbs_service_provider` (
   `LAST_MODIFIED_BY` varchar(20) DEFAULT NULL,
   `LAST_MODIFIED_DATE` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `hbs_service_provider` */
 
-insert  into `hbs_service_provider`(`ID`,`PROVIDER_NAME`,`PROVIDER_CODE`,`LOGIN_ACCOUNT`,`LOGIN_PASSWORD`,`PROVIDER_DESCRIPTION`,`ACTIVE`,`SERVICE_KEYWORD`,`PLACE_KEYWORD`,`CITY_CODE`,`DISTRICT_CODE`,`LBC_CODE`,`ZIP_CODE`,`ADDRESS_LINE`,`CONTRACT_NAME`,`CONTRACT_PHONE`,`EMAIL_ADDR`,`QQ_NUMBER`,`CREATED_BY`,`CREATED_DATE`,`LAST_MODIFIED_BY`,`LAST_MODIFIED_DATE`) values (1,'唐家康美来药店','kangMeiLai','account','pwd',NULL,1,NULL,'tangjia kangmeilai yaodian','0753',NULL,'075301001','514245',NULL,'contactPerson','phone','email','qq','system','2013-10-08 22:35:48',NULL,NULL),(3,'唐家康美来药店5','kangMeiLai5','account','pwd',NULL,1,NULL,'tangjia kangmeilai yaodian','0753',NULL,'075301001','514245',NULL,'contactPerson','phone','email','qq','system','2013-10-08 22:40:51',NULL,NULL),(4,'唐家康美来药店57','kangMeiLai57','account','pwd',NULL,1,NULL,'tangjia kangmeilai yaodian','0753',NULL,'075301001','514245',NULL,'contactPerson','phone','email','qq','system','2013-10-08 22:44:17',NULL,NULL),(5,'name','code','account','pwd',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-02-18 23:48:52',NULL,NULL);
+insert  into `hbs_service_provider`(`ID`,`PROVIDER_NAME`,`PROVIDER_CODE`,`LOGIN_ACCOUNT`,`LOGIN_PASSWORD`,`PROVIDER_DESCRIPTION`,`ACTIVE`,`SERVICE_CATEGORY`,`SERVICE_ITEM`,`SERVICE_ITEM_REMARK`,`SERVICE_KEYWORD`,`PLACE_KEYWORD`,`CITY_CODE`,`DISTRICT_CODE`,`LBC_CODE`,`ZIP_CODE`,`ADDRESS_LINE`,`CONTRACT_NAME`,`CONTRACT_PHONE`,`EMAIL_ADDR`,`QQ_NUMBER`,`CREATED_BY`,`CREATED_DATE`,`LAST_MODIFIED_BY`,`LAST_MODIFIED_DATE`) values (6,'name','code','account','pwd',NULL,1,'category','item','remarks',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-02-21 23:42:03',NULL,NULL);
 
 /*Table structure for table `hbs_sp_product_pic` */
 
@@ -325,10 +341,6 @@ CREATE TABLE `hbs_sp_product_pic` (
   `PIC_ORIGINAL_NAME` varchar(100) NOT NULL,
   `PICTURE_DESC` varchar(200) DEFAULT NULL,
   `SERVICE_PROVIDER_ID` int(11) NOT NULL,
-  `CREATED_BY` varchar(20) DEFAULT NULL,
-  `CREATED_DATE` datetime DEFAULT NULL,
-  `LAST_MODIFIED_BY` varchar(20) DEFAULT NULL,
-  `LAST_MODIFIED_DATE` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -344,16 +356,12 @@ CREATE TABLE `hbs_sp_service` (
   `REMARKS` varchar(100) DEFAULT NULL,
   `DISPLAY_ORDER` int(10) unsigned NOT NULL DEFAULT '1',
   `SERVICE_PROVIDER_ID` int(11) NOT NULL,
-  `CREATED_BY` varchar(20) DEFAULT NULL,
-  `CREATED_DATE` datetime DEFAULT NULL,
-  `LAST_MODIFIED_BY` varchar(20) DEFAULT NULL,
-  `LAST_MODIFIED_DATE` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `hbs_sp_service` */
 
-insert  into `hbs_sp_service`(`ID`,`SP_SERVICE_CODE`,`REMARKS`,`DISPLAY_ORDER`,`SERVICE_PROVIDER_ID`,`CREATED_BY`,`CREATED_DATE`,`LAST_MODIFIED_BY`,`LAST_MODIFIED_DATE`) values (1,'serviceItemCode',NULL,0,3,NULL,NULL,NULL,NULL),(2,'serviceItemCode2',NULL,0,4,NULL,NULL,NULL,NULL);
+insert  into `hbs_sp_service`(`ID`,`SP_SERVICE_CODE`,`REMARKS`,`DISPLAY_ORDER`,`SERVICE_PROVIDER_ID`) values (3,'scode1',NULL,1,6),(4,'scode2',NULL,1,6);
 
 /*Table structure for table `hbs_tag` */
 

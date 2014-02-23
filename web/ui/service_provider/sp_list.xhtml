@@ -24,7 +24,7 @@
         <!--</ui:repeat>-->
         <!--</o:cache>-->
 
-        <ui:repeat value="#{serviceProviderMaintainView.serviceCategoryList}" var="category">
+        <ui:repeat value="#{serviceMaintainView.serviceCategoryList}" var="category">
             <p:panel header="#{category.categoryName}">
                 <ui:repeat value="#{category.serviceItemList}" var="service">
                     <h:link outcome="/ui/service_provider/sp_list.xhtml?t=#{category.categoryCode}&amp;code=#{service.serviceCode}" value="#{service.serviceName}" style="text-decoration: none;"></h:link><p:spacer width="10" height="0" />
